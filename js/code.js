@@ -1,3 +1,11 @@
+const apiURL = "http://4331cop.xyz/LAMPAPIx";
+const apiExtension = ".php";
+
+let userId = -1;
+let firstName = "";
+let lastName = "";
+
+
 function login()
 {
     // get login info
@@ -16,11 +24,61 @@ function login()
         return false;
     }
 
+    loginFields =
+    {
+        login: username,
+        password: password
+    }
 
+    payload = JSON.stringify(loginFields);
+
+    let url = apiURL + "/Login" + apiExtension;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                let response = JSON.parse(xhr.responseText);
+
+                // check if login is valid
+                userId = response.id;
+                if (userId < 1)
+                {
+                    document.getElementById("login-response").innerHTML = "Username or password is incorrect";
+                    return false;
+                }
+
+                firstName = response.firstName;
+                lastName = response.lastName;
+
+                // save user login
+                storeCookie();
+
+                // redirect page
+                window.location.href = "contacts.html";
+            }
+        };
+        xhr.send(payload);
+    }
+    catch(error)
+    {
+        document.getElementById("login-response").innerHTML = error.message;
+        return false;
+    }
 }
 
 function create_account()
 {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+}
+
+function storeCookie()
+{
+
 }
