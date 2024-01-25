@@ -3,13 +3,23 @@
     <head>
         <title>Sign up - Contacts</title>
         <link rel="stylesheet" href="css/login.css">
+        <script type="text/javascript" src="js/code.js"></script>
     </head>
     <body>
         <div id="form-container">
+            <span id="login-response"></span>
             <form>
                 <div>
+                    <label for="firstName">First name</label><br>
+                    <input type="text" id="firstName" name="firstName">
+                </div>
+                <div>
+                    <label for="lastName">Last name</label><br>
+                    <input type="text" id="lastName" name="lastName">
+                </div>
+                <div>
                     <label for="username">Username</label><br>
-                    <input type="text" id="username" name="username>"
+                    <input type="text" id="username" name="username">
                 </div>
                 <div>
                     <label for="password">Password</label><br>
@@ -18,7 +28,7 @@
                     <label for="password-confirmation">Retype password</label><br>
                     <input type="password" autocomplete="off" id="password-confirmation" name="password-confirmation">
                 </div>
-                <button id="submit-button" name="submit-button">Create account</button>
+                <button id="submit-button" name="submit-button" onclick="return register();">Create account</button>
             </form>
         </div>
         <div>
