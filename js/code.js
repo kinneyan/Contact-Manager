@@ -127,7 +127,14 @@ function register()
             {
                 let response = JSON.parse(xhr.responseText);
 
+                userId = response.id;
+
                 // check api response
+                if (userId < 1)
+                {
+                    document.getElementById("login-response").innerHTML = "Error while creating account";
+                    return false;
+                }
 
                 // save user login
                 storeCookie();
