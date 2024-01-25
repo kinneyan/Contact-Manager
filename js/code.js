@@ -80,5 +80,9 @@ function create_account()
 
 function storeCookie()
 {
+    let currentDate = new Date();
+    let expireMinutes = 30;
+    let expireDate = new Date(currentDate.getTime() + expireMinutes * 60 * 1000);
 
+    document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + expireDate.toGMTString();
 }
