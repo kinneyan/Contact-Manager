@@ -1,4 +1,4 @@
-const apiURL = "http://4331cop.xyz/LAMPAPIx";
+const apiURL = "4331cop.xyz/LAMPAPI";
 const apiExtension = ".php";
 
 let userId = -1;
