@@ -1,0 +1,29 @@
+.banner
+{
+    text-align: center;
+}
+
+.banner-links
+{
+    display: flex;
+    justify-content: center;
+}
+
+.banner-links a
+{
+    display: flex;
+    flex: 0 1 auto;
+    align-items: center;
+
+    height: 50px;
+    padding: 5px;
+    margin: 0px 15px 0px 15px;
+
+    text-decoration: none;
+}
+
+.banner-links a:hover
+{
+    /* CHANGE COLOR TO PALETTE */
+    background-color: red;
+}
