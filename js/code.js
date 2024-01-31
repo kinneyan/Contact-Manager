@@ -1,4 +1,4 @@
-const apiURL = "/LAMPAPI";
+const apiURL = "http://4331cop.xyz/LAMPAPI";
 const apiExtension = ".php";
 
 let userId = -1;
@@ -30,44 +30,36 @@ function login()
         password: password
     }
 
-    payload = JSON.stringify(loginFields);
+    let payload = JSON.stringify(loginFields);
 
     let url = apiURL + "/Login" + apiExtension;
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try
     {
-        xhr.onreadystatechange = function()
+        $.post(url, payload, function(data, status)
         {
-            if (xhr.readyState == 4 && xhr.status == 200)
-            {
-                let response = JSON.parse(xhr.responseText);
-
                 // check if login is valid
-                userId = response.id;
+                userId = data.id;
                 if (userId < 1)
                 {
                     document.getElementById("login-response").innerHTML = "Username or password is incorrect";
                     return false;
                 }
 
-                firstName = response.firstName;
-                lastName = response.lastName;
+                firstName = data.firstName;
+                lastName = data.lastName;
 
                 // save user login
                 storeCookie();
 
                 // redirect page
                 window.location.href = "contacts.html";
-            }
-        };
-        xhr.send(payload);
+        });
     }
     catch(error)
     {
-        document.getElementById("login-response").innerHTML = error.message;
+        document.getElementById("login-response").innerHTML = "Login failed";
+        console.log("Login failed - " + error.message)
         return false;
     }
 }
