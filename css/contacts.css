@@ -1,0 +1,94 @@
+.banner
+{
+    text-align: left;
+}
+
+.banner a
+{
+    text-decoration: none;
+}
+
+#contacts
+{
+    display: flex;
+    justify-content: center;
+    height: 400px;
+}
+
+#contacts-list
+{
+    width: 30%;
+    border: 1px solid #ddd;
+    height: 100%;
+}
+
+#contacts table
+{
+    width: 100%;
+    border-collapse: collapse
+}
+
+#contacts td, #contacts th
+{
+    padding: 8px;
+}
+
+#contacts th
+{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    /* CHANGE COLOR WITH PALETTE */
+    background-color: red;
+    color: white;
+}
+
+#current-pane
+{
+    width: 30%;
+    height: 100%;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+#current-contact td, #current-contact th
+{
+    border: none;
+}
+
+#current-fname
+{
+    text-align: center;
+}
+
+.current-contact-details
+{
+    display: flex;
+}
+
+.current-label
+{
+    text-align: left;
+    width: 120px;
+}
+
+.current-data
+{
+    margin: 0 auto;
+    text-align: left;
+}
+
+#modify-contact
+{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: auto;
+    margin-bottom: 5px;
+}
+
+#contact-edit-button,
+#contact-delete-button
+{
+    width: 70px;
+}

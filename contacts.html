@@ -3,11 +3,55 @@
     <head>
         <meta charset="utf-8">
         <title>Contacts</title>
-        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/contacts.css">
         <script type="text/javascript" src="js.main.js"></script>
         <script type="text/javascript" src="js/contacts.js"></script>
     </head>
     <body>
+        <div class="banner">
+            <h3><a href="index.html">Joe's Contact Manager</a></h3>
+        </div>
+        <div id="contacts">
+            <div id="contacts-list">
+                <table id="contacts-table">
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            John Doe
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="current-pane">
+                <table id="current-contact">
+                    <tr>
+                        <th>Contact details</th>
+                    </tr>
+                    <tr>
+                        <td id="current-fname">John Doe</td>
+                    </tr>
+                    <tr>
+                        <td class="current-contact-details">
+                            <span class="current-label">Phone number</span>
+                            <span class="current-data" id="current-phone">555-555-5555</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="current-contact-details">
+                            <span class="current-label">Email</span>
+                            <span class="current-data" id="current-email">test@email.com</span>
+                        </td>
+                    </tr>
+                </table>
+                <div id="modify-contact">
+                    <button id="contact-edit-button">Edit</button>
+                    <button id="contact-delete-button">Delete</button>
+                </div>
+            </div>
+        </div>
         <div id="form-container">
             <form>
                 <div>
