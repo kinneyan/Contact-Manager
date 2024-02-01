@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<meta charset="utf-8">
+	    <meta charset="utf-8">
         <title>Sign up - Joe's Contact Manager</title>
         <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="css/login.css">
         <script type="text/javascript" src="js/code.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="banner">
@@ -17,31 +18,38 @@
                 <a href="signup.html">Sign up</a>
             </div>
         </div>
-        <div id="form-container">
+        <div class="flex-container">
             <span id="login-response"></span>
-            <form>
-                <div>
-                    <label for="firstName">First name</label><br>
+            <form class="form-container">
+                <div class="form-element">
+                    <label for="firstName">First name</label>
                     <input type="text" id="firstName" name="firstName">
+                    <span class="field-error" id="fname-empty">Name cannot be empty</span>
                 </div>
-                <div>
-                    <label for="lastName">Last name</label><br>
+                <div class="form-element">
+                    <label for="lastName">Last name</label>
                     <input type="text" id="lastName" name="lastName">
+                    <span class="field-error" id="lname-empty">Name cannot be empty</span>
                 </div>
-                <div>
-                    <label for="username">Username</label><br>
+                <div class="form-element">
+                    <label for="username">Username</label>
                     <input type="text" id="username" name="username">
+                    <span class="field-error" id="username-empty">Username cannot be empty</span>
                 </div>
-                <div>
-                    <label for="password">Password</label><br>
-                    <input type="password" autocomplete="off" id="password" name="password"><br>
-
-                    <label for="password-confirmation">Retype password</label><br>
+                <div class="form-element">
+                    <label for="password">Password</label>
+                    <input type="password" autocomplete="off" id="password" name="password">
+                    <span class="field-error" id="password-empty">Password cannot be empty</span>
+                </div>
+                <div class="form-element">
+                    <label for="password-confirmation">Retype password</label>
                     <input type="password" autocomplete="off" id="password-confirmation" name="password-confirmation">
+                    <span class="field-error" id="cpassword-empty">Passwords do not match</span>
                 </div>
-                <button id="submit-button" name="submit-button" onclick="return register();">Create account</button>
+                <div class="form-element">
+                    <button id="submit-button" name="submit-button" onclick="return register();">Create account</button>
+                </div>
             </form>
-        </div>
         <div>
             <p>
                 Already have an account? <a href="login.html">Log in</a>

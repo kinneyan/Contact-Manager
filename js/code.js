@@ -13,16 +13,26 @@ function login()
     const password = document.getElementById("password").value;
 
     // check if empty
+    var exit = false;
     if (username == "")
     {
-        document.getElementById("login-response").innerHTML = "Username cannot be empty";
-        return false;
+        document.getElementById("username-empty").style.display = "flex";
+        exit = true;
     }
-    else if (password == "")
+    else
     {
-        document.getElementById("login-response").innerHTML = "Password cannot be empty";
-        return false;
+        document.getElementById("username-empty").style.display = "none";
     }
+    if (password == "")
+    {
+        document.getElementById("password-empty").style.display = "flex";
+        exit = true;
+    }
+    else
+    {
+        document.getElementById("password-empty").style.display = "none";
+    }
+    if (exit) return false;
 
     loginFields =
     {
@@ -75,27 +85,56 @@ function register()
 
     let loginResponse = document.getElementById("login-response");
 
-    if (firstName == "" || lastName == "")
+    // check if empty
+    var exit = false;
+    if (firstName == "")
     {
-        loginResponse.innerHTML = "Name cannot be empty";
-        return false;
+        document.getElementById("fname-empty").style.display = "flex";
+        exit = true;
     }
-    else if (username == "")
+    else
     {
-        loginResponse.innerHTML = "Username cannot be empty";
-        return false;
+        document.getElementById("fname-empty").style.display = "none";
     }
-    else if (password == "" || passwordConfirmation == "")
+    if (lastName == "")
     {
-        loginResponse.innerHTML = "Password cannot be empty";
-        return false;
+        document.getElementById("lname-empty").style.display = "flex";
+        exit = true;
     }
+    else
+    {
+        document.getElementById("lname-empty").style.display = "none";
 
+    }
+    if (username == "")
+    {
+        document.getElementById("username-empty").style.display = "flex";
+        exit = true;
+    }
+    else
+    {
+        document.getElementById("username-empty").style.display = "none";
+    }
+    if (password == "")
+    {
+        document.getElementById("password-empty").style.display = "flex";
+        exit = true;
+    }
+    else
+    {
+        document.getElementById("password-empty").style.display = "none";
+    }
     if (password != passwordConfirmation)
     {
-        loginResponse.innerHTML = "Passwords do not match";
-        return false;
+        document.getElementById("cpassword-empty").style.display = "flex";
+        exit = true;
     }
+    else
+    {
+        document.getElementById("cpassword-empty").style.display = "none";
+
+    }
+    if (exit) return false;
 
     registerFields =
     {

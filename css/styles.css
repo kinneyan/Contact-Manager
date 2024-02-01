@@ -12,7 +12,6 @@
 .banner-links a
 {
     display: flex;
-    flex: 0 1 auto;
     align-items: center;
 
     height: 50px;

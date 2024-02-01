@@ -18,24 +18,28 @@
                 <a href="signup.html">Sign up</a>
             </div>
         </div>
-        <div id="form-container">
+        <div class="flex-container">
             <span id="login-response"></span>
-            <form>
-                <div>
-                    <label for="username">Username</label><br>
+            <form class="form-container">
+                <div class="form-element">
+                    <label for="username">Username</label>
                     <input type="text" id="username" name="username">
+                    <span class="field-error" id="username-empty">Username cannot be empty</span>
                 </div>
-                <div>
-                    <label for="password">Password</label><br>
+                <div class="form-element">
+                    <label for="password">Password</label>
                     <input type="password" autocomplete="off" id="password" name="password">
+                    <span class="field-error" id="password-empty">Password cannot be empty</span>
                 </div>
-                <button id="submit-button" name="submit-button" onclick="return login();">Log in</button>
+                <div class="form-element">
+                    <button id="submit-button" name="submit-button" onclick="return login();">Log in</button>
+                </div>
             </form>
-        </div>
-        <div>
-          <p>
-            Don't have an account? <a href="signup.html">Sign up</a>
-          </p>
+            <div>
+                <p>
+                    Don't have an account? <a href="signup.html">Sign up</a>
+                </p>
+            </div>
         </div>
     </body>
 </html>
