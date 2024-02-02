@@ -67,6 +67,14 @@ function login()
     return false;
 }
 
+function logout()
+{
+    userId = -1;
+    firstName = "";
+    lastName = "";
+    window.location.href = "index.html";
+}
+
 function register()
 {
     // get registration information
