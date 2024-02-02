@@ -12,10 +12,11 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT FirstName, LastName FROM Contacts WHERE (FirstName LIKE ? AND LastName LIKE ?)");
+		$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email FROM Contacts WHERE (UserID LIKE ? AND FirstName LIKE ? AND LastName LIKE ?)");
+		$searchuserId = "%" . $inData["userId"] . "%";
 		$searchfirst = "%" . $inData["firstName"] . "%";
 		$searchlast = "%" . $inData["lastName"] . "%";
-		$stmt->bind_param("ss", $searchfirst, $searchlast);
+		$stmt->bind_param("sss", $searchuserId, $searchfirst, $searchlast);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -27,7 +28,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["FirstName"] . ' ' . $row["LastName"] . '"';
+			$searchResults .= '"' . $row["FirstName"] . ' ' . $row["LastName"]. ' ' . $row["Phone"]. ' ' . $row["Email"] . '"';
 		}
 		$searchResults = rtrim($searchResults, ',');
 		
