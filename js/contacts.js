@@ -35,22 +35,32 @@ function addContact() {
 
 function loadContacts(results)
 {
-    let text = "";
+
+    let nameText = "";
+    let infoText = "";
     let firstNameTable;
     let lastNameTable;
-    let totalName;
+    let phoneTable;
+    let emailTable;
+    let totalSearch;
     for (let i = 0; i<results.results.length; i++)
     {
-	text += "<tr>";
-        totalName = results.results[i];
-        totalName = totalName.split(" ");
-        firstNameTable = totalName[0];
-        lastNameTable = totalName[1];
-        text += "<td><span>" + firstNameTable + "</span></td>";
-        text += "<td><span>" + lastNameTable + "</span></td>";
-    	text += "</tr>";
+	nameText += "<tr>";
+        totalSearch = results.results[i];
+        totalSearch = totalSearch.split(" ");
+        firstNameTable = totalSearch[0];
+        lastNameTable = totalSearch[1];
+	phoneTable = totalSearch[2];
+	emailTable = totalSearch[3];
+        infoText += "<tr><td id='current-fname'>" + firstNameTable + " " + lastNameTable +"</td></tr>"
+        infoText += "<tr><td class='current-contact-details'><span class='current-label'>Phone Number</span><span class='current-data' id='current-phone'>" + phoneTable + "</span></td></tr>"
+        infoText += "<tr><td class='current-contact-details'><span class='current-label'>Email</span><span class='current-data' id='current-email'>" + emailTable + "</span></td></tr>"
+        nameText += "<td>" + firstNameTable;
+        nameText += " " + lastNameTable + "</td>";
+    	nameText += "</tr>";
 }
-    document.getElementById("contactList").innerHTML = text;
+    document.getElementById("contactsTable").innerHTML = nameText;
+    document.getElementById("contactsListForReal").innerHTML = infoText;
 }
 
 function searchContacts()
@@ -60,7 +70,7 @@ function searchContacts()
     let searchInfo = {
         firstName: searchFirst,
         lastName: searchLast,
-        //userId: userId
+        userId: userId
     }
     let payload = JSON.stringify(searchInfo);
     let url = apiURL + '/SearchContacts' + apiExtension;
