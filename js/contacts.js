@@ -15,19 +15,15 @@ function addContact() {
 
 
     let payload = JSON.stringify(contactInfo);
-
     let url = apiURL + '/AddContact' + apiExtension;
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
-        xhr.onreadystatechange = function () {
+        $.post(url, payload, function(data, status)
+        {
             if (this.readyState == 4 && this.status == 200) {
                 console.log("Contact has been added");
             }
-        };
-        xhr.send(payload);
+        });
     } catch (err) {
         console.log(err.message);
     }
@@ -64,20 +60,16 @@ function searchContacts()
     }
     let payload = JSON.stringify(searchInfo);
     let url = apiURL + '/SearchContacts' + apiExtension;
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
     try
     {
-        xhr.onreadystatechange = function()
+        $.post(url, payload, function(data, status)
         {
             if(this.readyState == 4 && this.status == 200)
             {
-                let json = JSON.parse(xhr.responseText);
-                loadContacts(json);
+                loadContacts(data);
             }
-	};
-            xhr.send(payload);
+        });
     }
     catch(err)
     {
