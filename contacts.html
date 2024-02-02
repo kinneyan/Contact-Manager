@@ -5,15 +5,18 @@
         <title>Contacts</title>
         <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="css/contacts.css">
-        <script type="text/javascript" src="js.main.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/contacts.js"></script>
+	<script type="text/javascript" src="js/cookie.js"></script>
+	<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function(){
+	getCookie();
+	}, {once: true});
+	</script>
     </head>
     <body>
         <div class="banner">
             <h3><a href="index.html">Joe's Contact Manager</a></h3>
-            <span><a href="index.html" id="logout-button">Log out</a></span>
-        </div>
-        <div id="search">
         </div>
         <div id="contacts">
             <div id="contacts-list">
@@ -21,11 +24,13 @@
                     <tr>
                         <th>Name</th>
                     </tr>
+		    <tbody id="contactsTable">
                     <tr>
                         <td>
-                            <a href="#">John Doe</a>
+                            John Doe
                         </td>
                     </tr>
+		    </tbody>
                 </table>
             </div>
             <div id="current-pane">
@@ -33,6 +38,7 @@
                     <tr>
                         <th>Contact details</th>
                     </tr>
+                    <tbody id="contactsListForReal">
                     <tr>
                         <td id="current-fname">John Doe</td>
                     </tr>
@@ -48,6 +54,7 @@
                             <span class="current-data" id="current-email">test@email.com</span>
                         </td>
                     </tr>
+                    </tbody>
                 </table>
                 <div id="modify-contact">
                     <button id="contact-edit-button">Edit</button>
@@ -64,6 +71,10 @@
                     <input type="text" id="contactsEmail" placeholder="name@email.com">
                     <button type="button" id="addContactBtn" onclick="addContact();">Add Contact</button>
                 </div>
+		<div>
+		    <input type="text" id="searchFirstName" placeholder="First Name">
+		    <input type="text" id="searchLastName" placeholder="Last name">
+		    <button type="button" id="searchContactsBtn" onclick="searchContacts();">Search Contacts</button>
 
             </form>
 
