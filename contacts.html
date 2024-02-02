@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="css/contacts.css">
         <script type="text/javascript" src="js.main.js"></script>
         <script type="text/javascript" src="js/contacts.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="banner">
@@ -34,23 +35,41 @@
                         <th>Contact details</th>
                     </tr>
                     <tr>
-                        <td id="current-fname">John Doe</td>
+                        <td id="current-name">
+                            <span id="current-fname">John</span>
+                            <span id="current-lname">Doe</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="current-contact-details name-editor" id="fname-editor-data">
+                            <label class="current-label" for="fname-editor" id="fname-label">First name</label>
+                            <input class="current-data" type="text" id="fname-editor">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="current-contact-details name-editor" id="lname-editor-data">
+                            <label class="current-label" for="lname-editor" id="lname-label">Last name</label>
+                            <input class="current-data" type="text" id="lname-editor">
+                        </td>
                     </tr>
                     <tr>
                         <td class="current-contact-details">
                             <span class="current-label">Phone number</span>
                             <span class="current-data" id="current-phone">555-555-5555</span>
+                            <input class="current-data field-editor" type="text" id="phone-editor">
                         </td>
                     </tr>
                     <tr>
                         <td class="current-contact-details">
                             <span class="current-label">Email</span>
                             <span class="current-data" id="current-email">test@email.com</span>
+                            <input class="current-data field-editor" type="text" id="email-editor">
                         </td>
                     </tr>
                 </table>
                 <div id="modify-contact">
-                    <button id="contact-edit-button">Edit</button>
+                    <button id="contact-edit-button" onclick="editContact();">Edit</button>
+                    <button id="contact-save-button" onclick="saveEdits();">Save</button>
                     <button id="contact-delete-button">Delete</button>
                 </div>
             </div>

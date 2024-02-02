@@ -76,3 +76,47 @@ function searchContacts()
         console.log(err.message);
     }
 }
+
+function editContact()
+{
+    // update button
+    document.getElementById("contact-edit-button").style.display = "none";
+    document.getElementById("contact-save-button").style.display = "inline-block";
+
+    // update name labels
+    document.getElementById("current-name").style.display = "none";
+    document.getElementById("fname-editor-data").style.display = "flex";
+    document.getElementById("lname-editor-data").style.display = "flex";
+
+    // update placeholders to match current name
+    document.getElementById("fname-editor").value = document.getElementById("current-fname").textContent;
+    document.getElementById("lname-editor").value = document.getElementById("current-lname").textContent;
+
+    // update contact fields
+    document.getElementById("current-phone").style.display = "none";
+    document.getElementById("phone-editor").style.display = "inline-block";
+    document.getElementById("current-email").style.display = "none";
+    document.getElementById("email-editor").style.display = "inline-block";
+
+    // update placeholders for contact fields
+    document.getElementById("phone-editor").value = document.getElementById("current-phone").textContent;
+    document.getElementById("email-editor").value = document.getElementById("current-email").textContent;
+}
+
+function saveEdits()
+{
+    // update button
+    document.getElementById("contact-save-button").style.display = "none";
+    document.getElementById("contact-edit-button").style.display = "inline-block";
+    
+    // update name labels
+    document.getElementById("fname-editor-data").style.display = "none";
+    document.getElementById("lname-editor-data").style.display = "none";
+    document.getElementById("current-name").style.display = "flex";
+
+    // update contact fields
+    document.getElementById("phone-editor").style.display = "none";
+    document.getElementById("current-phone").style.display = "inline-block";
+    document.getElementById("email-editor").style.display = "none";
+    document.getElementById("current-email").style.display = "inline-block";
+}

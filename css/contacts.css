@@ -28,7 +28,7 @@
 #contacts table
 {
     width: 100%;
-    border-collapse: collapse
+    border-collapse: collapse;
 }
 
 #contacts td, #contacts th
@@ -60,9 +60,16 @@
     border: none;
 }
 
-#current-fname
+#current-name
 {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+#current-name span
+{
+    padding: 2px;
 }
 
 .current-contact-details
@@ -90,8 +97,33 @@
     margin-bottom: 5px;
 }
 
+
 #contact-edit-button,
+#contact-save-button,
 #contact-delete-button
 {
     width: 70px;
+}
+
+#contact-save-button
+{
+    display: none;
+}
+
+.name-editor
+{
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+.name-editor input,
+.field-editor
+{
+    width: 25%;
+}
+
+.field-editor
+{
+    display: none;
 }
