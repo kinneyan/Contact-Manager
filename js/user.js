@@ -162,4 +162,5 @@ function register()
         console.log("Register failed - " + error.message);
         return false;
     }
+    return false;
 }
