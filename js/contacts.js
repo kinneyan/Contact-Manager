@@ -119,4 +119,15 @@ function saveEdits()
     document.getElementById("current-phone").style.display = "inline-block";
     document.getElementById("email-editor").style.display = "none";
     document.getElementById("current-email").style.display = "inline-block";
+
+    // save name
+    document.getElementById("current-fname").textContent = document.getElementById("fname-editor").value;
+    document.getElementById("current-lname").textContent = document.getElementById("lname-editor").value;
+
+    // save contact fields
+    document.getElementById("current-phone").textContent = document.getElementById("phone-editor").value;
+    document.getElementById("current-email").textContent = document.getElementById("email-editor").value;
+
+    // update contact in database
+    // DO ONCE UPDATE API ENDPOINT IS CREATED
 }
