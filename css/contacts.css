@@ -1,6 +1,9 @@
 .banner
 {
     text-align: left;
+    display: flex;
+    justify-content:space-between;
+    margin: 10px;
 }
 
 .banner a
