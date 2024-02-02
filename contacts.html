@@ -7,12 +7,13 @@
         <link rel="stylesheet" href="css/contacts.css">
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/contacts.js"></script>
-	<script type="text/javascript" src="js/cookie.js"></script>
-	<script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function(){
-	getCookie();
-	}, {once: true});
-	</script>
+        <script type="text/javascript" src="js/cookie.js"></script>
+        <script type="text/javascript">
+          document.addEventListener('DOMContentLoaded', function(){
+            getCookie();
+          }, {once: true});
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="banner">
@@ -40,45 +41,45 @@
                     </tr>
                     <tbody id="contactsListForReal">
                     <tr>
-                        <td id="current-fname">John Doe</td>
+                        <td id="current-name">
+                            <span id="current-fname">John</span>
+                            <span id="current-lname">Doe</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="current-contact-details name-editor" id="fname-editor-data">
+                            <label class="current-label" for="fname-editor" id="fname-label">First name</label>
+                            <input class="current-data" type="text" id="fname-editor">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="current-contact-details name-editor" id="lname-editor-data">
+                            <label class="current-label" for="lname-editor" id="lname-label">Last name</label>
+                            <input class="current-data" type="text" id="lname-editor">
+                        </td>
                     </tr>
                     <tr>
                         <td class="current-contact-details">
                             <span class="current-label">Phone number</span>
                             <span class="current-data" id="current-phone">555-555-5555</span>
+                            <input class="current-data field-editor" type="text" id="phone-editor">
                         </td>
                     </tr>
                     <tr>
                         <td class="current-contact-details">
                             <span class="current-label">Email</span>
                             <span class="current-data" id="current-email">test@email.com</span>
+                            <input class="current-data field-editor" type="text" id="email-editor">
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <div id="modify-contact">
-                    <button id="contact-edit-button">Edit</button>
+                    <button id="contact-edit-button" onclick="editContact();">Edit</button>
+                    <button id="contact-save-button" onclick="saveEdits();">Save</button>
                     <button id="contact-delete-button">Delete</button>
                 </div>
             </div>
-        </div>
-        <div id="form-container">
-            <form>
-                <div>
-                    <input type="text" id="contactsFirstName" placeholder="First Name">
-                    <input type="text" id="contactsLastName" placeholder="Last Name">
-                    <input type="text" id="contactsPhoneNumber" placeholder="555-555-5555">
-                    <input type="text" id="contactsEmail" placeholder="name@email.com">
-                    <button type="button" id="addContactBtn" onclick="addContact();">Add Contact</button>
-                </div>
-		<div>
-		    <input type="text" id="searchFirstName" placeholder="First Name">
-		    <input type="text" id="searchLastName" placeholder="Last name">
-		    <button type="button" id="searchContactsBtn" onclick="searchContacts();">Search Contacts</button>
-
-            </form>
-
-
         </div>
     </body>
 </html>
