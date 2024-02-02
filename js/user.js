@@ -64,6 +64,7 @@ function login()
         console.log("Login failed - " + error.message)
         return false;
     }
+    return false;
 }
 
 function register()
