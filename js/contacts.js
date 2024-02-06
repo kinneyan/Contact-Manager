@@ -180,6 +180,8 @@ function saveEdits()
     contacts[currentContact].phoneNumber = document.getElementById("phone-editor").value;
     contacts[currentContact].email = document.getElementById("email-editor").value;
 
+    openContact(currentContact);
+
     // update contact in database
     // DO ONCE UPDATE API ENDPOINT IS CREATED
 }
