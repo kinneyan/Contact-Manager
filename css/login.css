@@ -1,12 +1,17 @@
+
 .flex-container
 {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 400px;
-    height: 400px;
+    width: 300px;
+     height: 300px;
     margin: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: lightgray;
+    box-shadow: 3px 2px 8px 0px #858C8C;
 }
 
 .form-container
@@ -22,13 +27,100 @@
 
 .form-element
 {
+    text-align: left;
     display: flex;
     flex-direction: column;
 }
-
-.field-error
+            
+.form-element label
 {
+    font: bold small-caps 20px "Times New Roman", times, serif;
+    padding: 0px 0px 10px 0px;
+}
+            
+.form-element input
+{
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    height: 25px;
+    font: bold 20px "Times New Roman", times, serif;
+    box-shadow: 3px 2px 8px 0px #858C8C;
+}
+            
+.form-element input:focus
+{
+    box-shadow: 0px 0px 14px 1px #000000;
+}
+            
+.form-element button
+{
+    font: bold 20px "Times New Roman", times, serif;
+    border: none;
+    border-radius: 25px;
+    height: 25px;
+    box-shadow: 3px 2px 8px 0px #858C8C;
+    transition-duration: 0.3s;
+}
+            
+.form-element button:hover
+{
+    background-color: #666464;
+}
+            
+.form-element button:active
+{
+    transform: translateY(2px);
+}
+            
+.form-element input[type="text"]::placeholder
+{
+    text-align: center;
+}
+            
+.form-element input[type="password"]::placeholder
+{
+    text-align: center;
+}
+            
+#login-response
+{
+                
+    font-weight: bold;
+    font-size: 18px;
+    font-variant: small-caps;
+    color: red;
+}
+            
+#signup-button
+{
+    display: grid;
+    text-align: center;
+    color: black;
+    background-color: white;
+    text-decoration: none;
+    font: bold 20px "Times New Roman", times, serif;
+    border: none;
+    border-radius: 25px;
+    height: 25px;
+    box-shadow: 3px 2px 8px 0px #858C8C;
+    transition-duration: 0.3s;
+}
+            
+#signup-button:hover
+{
+    background-color: #666464;
+}
+            
+#signup-button:active
+{
+    transform: translateY(2px);
+}
+            
+            .field-error
+{
+    font-weight: bold;
     display: none;
-    font-size: 13px;
+    font-size: 15px;
     color: red;
 }
