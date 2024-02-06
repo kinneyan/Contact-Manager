@@ -193,6 +193,7 @@ function newContact()
     document.getElementById("contact-delete-button").style.display = "none";
     document.getElementById("cancel-button").style.display = "inline-block";
     document.getElementById("new-contact-save").style.display = "inline-block";
+    document.getElementById("contact-save-button").style.display = "none";
 
     // update name labels
     document.getElementById("current-name").style.display = "none";
