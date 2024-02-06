@@ -125,15 +125,21 @@
     display: none;
 }
 
-.search
+#search
 {
     display: flex;
     justify-content: center;
     margin: 5px;
 }
 
-.search *
+#search *
 {
     margin: 3px;
 }
 
+#contact-manager
+{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}

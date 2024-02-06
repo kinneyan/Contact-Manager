@@ -12,7 +12,7 @@
         <script type="text/javascript" src="js/cookie.js"></script>
         <script type="text/javascript">
             document.addEventListener('DOMContentLoaded', function(){
-                getCookie();
+                // /getCookie();
             }, {once: true});
         </script>
     </head>
@@ -21,10 +21,15 @@
             <h3><a href="index.html">Joe's Contact Manager</a></h3>
             <span><a href="#" id="logout-button" onclick="logout();">Log out</a></span>
         </div>
-        <div class="search">
-            <label for="search-bar">Search contacts</label>
-            <input id="search-bar" type="text">
-            <button id="search-button" onclick="searchContacts();">Search</button>
+        <div id="contact-manager">
+            <div class="buttons">
+                <button id="add-contact">New contact</button>
+            </div>
+            <div id="search">
+                <label for="search-bar">Search contacts</label>
+                <input id="search-bar" type="text">
+                <button id="search-button" onclick="searchContacts();">Search</button>
+            </div>
         </div>
         <div id="contacts">
             <div id="contacts-list">
