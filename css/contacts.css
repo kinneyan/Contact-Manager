@@ -143,3 +143,11 @@
     justify-content: space-evenly;
     align-items: center;
 }
+
+#contacts a,
+#contacts a:visited,
+#contacts a:focus
+{
+    text-decoration: none;
+    color: black;   
+}
