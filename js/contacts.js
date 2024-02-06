@@ -1,3 +1,5 @@
+let contacts = {}
+
 function addContact() {
 
     let firstName = document.getElementById("contactsFirstName").value;
@@ -20,43 +22,58 @@ function addContact() {
     try {
         $.post(url, payload, function(data, status)
         {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log("Contact has been added");
-            }
+            console.log("Contact has been added");
         });
     } catch (err) {
         console.log(err.message);
     }
 }
 
-function loadContacts(results)
+function openContact(contactId)
 {
-    let text = "";
-    let firstNameTable;
-    let lastNameTable;
-    let totalName;
-    for (let i = 0; i<results.results.length; i++)
-    {
-	text += "<tr>";
-        totalName = results.results[i];
-        totalName = totalName.split(" ");
-        firstNameTable = totalName[0];
-        lastNameTable = totalName[1];
-        text += "<td><span>" + firstNameTable + "</span></td>";
-        text += "<td><span>" + lastNameTable + "</span></td>";
-    	text += "</tr>";
+    console.log(contactId);
 }
-    document.getElementById("contactList").innerHTML = text;
+
+function loadContacts(data)
+{
+    var html = "";
+    results = data.results;
+    for (var i = 0; i < results.length; i++)
+    {
+        var contact = results[i].split(" ");
+        var id = i;
+        var firstName = contact[0];
+        var lastName = contact[1];
+        var phone = contact[2];
+        var email = contact[3];
+
+        // skip contact if corrupt
+        if (firstName == "" || lastName == "" || phone == "" || email == "") break;
+        
+        // add to contacts list
+        contacts[i] =
+        {
+            firstName: firstName,
+            lastName: lastName,
+            phoneNumber: phone,
+            email: email,
+            id: id
+        };
+
+        // generate html tags
+        html += "<tr><td><a href=\"#\" onclick=openContact(" + id + ")>" + firstName + " " +  lastName + "</a></td></tr>";
+    }
+
+    // inject html text
+    document.getElementById("contact-table-data").innerHTML = html;
 }
 
 function searchContacts()
 {
-    let searchFirst = document.getElementById("searchFirstName").value;
-    let searchLast = document.getElementById("searchLastName").value;
+    let searchData = document.getElementById("search-bar").value;
     let searchInfo = {
-        firstName: searchFirst,
-        lastName: searchLast,
-        //userId: userId
+        firstName: searchData,
+        userId: userId
     }
     let payload = JSON.stringify(searchInfo);
     let url = apiURL + '/SearchContacts' + apiExtension;
@@ -65,10 +82,7 @@ function searchContacts()
     {
         $.post(url, payload, function(data, status)
         {
-            if(this.readyState == 4 && this.status == 200)
-            {
-                loadContacts(data);
-            }
+            loadContacts(data);
         });
     }
     catch(err)
