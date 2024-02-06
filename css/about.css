@@ -1,0 +1,40 @@
+#about-information
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px;
+}
+
+#group
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+#group-members
+{
+    display: flex;
+    align-items: center;
+}
+
+#group-members h4
+{
+    margin: 2px;
+    margin-left: 35px;
+}
+
+#group-members ul
+{
+    margin: 5px;
+}
+
+#repo
+{
+    margin-top: 20px;
+    font-size: 15px;
+}
