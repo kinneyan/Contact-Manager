@@ -5,6 +5,10 @@
 
 .banner-links
 {
+    font: italic bold small-caps 35px "Times New Roman", Times, serif;
+    position: fixed;
+    bottom: 150px;
+    left: 650px;
     display: flex;
     justify-content: center;
 }
@@ -13,16 +17,16 @@
 {
     display: flex;
     align-items: center;
-
     height: 50px;
     padding: 5px;
     margin: 0px 15px 0px 15px;
-
+    color: lightgray;
     text-decoration: none;
 }
 
 .banner-links a:hover
 {
-    /* CHANGE COLOR TO PALETTE */
-    background-color: red;
+    cursor: pointer;
+    background-color: lightgray;
+    color: black;
 }

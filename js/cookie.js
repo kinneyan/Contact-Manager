@@ -39,8 +39,8 @@ function getCookie()
     {
         window.location.href = "login.html";
     }
-    else
+    else if(window.location.pathname != "/contacts.html")
     {
-        window.location.href = "contacts.html";
+      window.location.href = "contacts.html";
     }
 }

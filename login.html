@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -9,6 +9,17 @@
         <script type="text/javascript" src="js/cookie.js"></script>
         <script type="text/javascript" src="js/user.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+            body 
+            {
+                background-image: url("/images/project2.jpg");
+                background-position: 50% -750px;
+                background-repeat: auto;
+                background-size: 100% 2500px;
+                background-attachment: fixed;
+                background-color: #261E0B
+            }
+         </style>
     </head>
     <body>
         <div class="banner">
@@ -20,7 +31,7 @@
                 <a href="signup.html">Sign up</a>
             </div>
         </div>
-        <div class="flex-container">
+        <div class="flex-container" style="position: absolute; left: 42%; top: 400px;">
             <span id="login-response"></span>
             <form class="form-container">
                 <div class="form-element">
@@ -39,7 +50,7 @@
             </form>
             <div>
                 <p>
-                    Don't have an account? <a href="signup.html">Sign up</a>
+                    Don't have an account? <a href="signup.html" id="signup-Button">Sign up</a>
                 </p>
             </div>
         </div>

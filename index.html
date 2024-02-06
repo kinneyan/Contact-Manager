@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+	<style>
+	   body {
+	     background-image: url("/images/project.jpg");
+	      background-position: 50% -750px;
+		background-repeat: auto;
+		background-size: 100% 2500px;
+		background-attachment: fixed;
+		background-color: #261E0B
+	   }
+	</style>
     	<meta charset="utf-8">
         <title>Joe's Contact Manager</title>
         <link rel="stylesheet" href="css/styles.css">
@@ -9,7 +19,10 @@
     </head>
     <body>
         <div class="banner">
-            <h1>Joe's Contact Manager</h1>
+	    <div style='color: lightgray; font: italic bold small-caps 45px "Times New Roman", Times, serif; position: fixed; bottom: 250px; left: 775px; display: flex; justify-content: center;'>
+		<p>Contact Manager</p>
+	    </div>
+	
             <div class="banner-links">
                 <a href="about.html">About</a>
                 <a href="#" onclick="return getCookie();">Contacts</a>

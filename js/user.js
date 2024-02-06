@@ -64,6 +64,15 @@ function login()
         console.log("Login failed - " + error.message)
         return false;
     }
+    return false;
+}
+
+function logout()
+{
+    userId = -1;
+    firstName = "";
+    lastName = "";
+    window.location.href = "index.html";
 }
 
 function register()
@@ -161,4 +170,5 @@ function register()
         console.log("Register failed - " + error.message);
         return false;
     }
+    return false;
 }
