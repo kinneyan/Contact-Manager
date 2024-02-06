@@ -31,7 +31,10 @@ function addContact() {
 
 function openContact(contactId)
 {
-    console.log(contactId);
+    document.getElementById("current-fname").textContent = contacts[contactId].firstName;
+    document.getElementById("current-lname").textContent = contacts[contactId].lastName;
+    document.getElementById("current-phone").textContent = contacts[contactId].phoneNumber;
+    document.getElementById("current-email").textContent = contacts[contactId].email;
 }
 
 function loadContacts(data)
