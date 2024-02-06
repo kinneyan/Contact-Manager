@@ -97,14 +97,14 @@
     margin-bottom: 5px;
 }
 
-#contact-edit-button,
-#contact-save-button,
-#contact-delete-button
+.contact-button
 {
     width: 70px;
 }
 
-#contact-save-button
+#contact-save-button,
+#new-contact-save,
+#cancel-button
 {
     display: none;
 }

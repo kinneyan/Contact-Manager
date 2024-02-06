@@ -23,7 +23,7 @@
         </div>
         <div id="contact-manager">
             <div class="buttons">
-                <button id="add-contact">New contact</button>
+                <button id="add-contact" onclick="newContact();">New contact</button>
             </div>
             <div id="search">
                 <label for="search-bar">Search contacts</label>
@@ -86,9 +86,11 @@
                     </tbody>
                 </table>
                 <div id="modify-contact">
-                    <button id="contact-edit-button" onclick="editContact();">Edit</button>
-                    <button id="contact-save-button" onclick="saveEdits();">Save</button>
-                    <button id="contact-delete-button">Delete</button>
+                    <button class="contact-button" id="cancel-button" onclick="resetFields()">Cancel</button>
+                    <button class="contact-button" id="contact-edit-button" onclick="editContact();">Edit</button>
+                    <button class="contact-button" id="contact-save-button" onclick="saveEdits();">Save</button>
+                    <button class="contact-button" id="contact-delete-button">Delete</button>
+                    <button class="contact-button" id="new-contact-save" onclick="createContact();">Create</button>
                 </div>
             </div>
         </div>
