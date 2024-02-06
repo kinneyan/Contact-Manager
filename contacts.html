@@ -45,41 +45,45 @@
             </div>
             <div id="current-pane">
                 <table id="current-contact">
-                    <tr>
-                        <th>Contact details</th>
-                    </tr>
-                    <tr>
-                        <td id="current-name">
-                            <span id="current-fname"></span>
-                            <span id="current-lname"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="current-contact-details name-editor" id="fname-editor-data">
-                            <label class="current-label" for="fname-editor" id="fname-label">First name</label>
-                            <input class="current-data" type="text" id="fname-editor">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="current-contact-details name-editor" id="lname-editor-data">
-                            <label class="current-label" for="lname-editor" id="lname-label">Last name</label>
-                            <input class="current-data" type="text" id="lname-editor">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="current-contact-details">
-                            <span class="current-label">Phone number</span>
-                            <span class="current-data" id="current-phone"></span>
-                            <input class="current-data field-editor" type="text" id="phone-editor">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="current-contact-details">
-                            <span class="current-label">Email</span>
-                            <span class="current-data" id="current-email"></span>
-                            <input class="current-data field-editor" type="text" id="email-editor">
-                        </td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Contact details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="current-name">
+                                <span id="current-fname"></span>
+                                <span id="current-lname"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="current-contact-details name-editor" id="fname-editor-data">
+                                <label class="current-label" for="fname-editor" id="fname-label">First name</label>
+                                <input class="current-data" type="text" id="fname-editor">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="current-contact-details name-editor" id="lname-editor-data">
+                                <label class="current-label" for="lname-editor" id="lname-label">Last name</label>
+                                <input class="current-data" type="text" id="lname-editor">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="current-contact-details">
+                                <span class="current-label">Phone number</span>
+                                <span class="current-data" id="current-phone"></span>
+                                <input class="current-data field-editor" type="text" id="phone-editor">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="current-contact-details">
+                                <span class="current-label">Email</span>
+                                <span class="current-data" id="current-email"></span>
+                                <input class="current-data field-editor" type="text" id="email-editor">
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div id="modify-contact">
                     <button id="contact-edit-button" onclick="editContact();">Edit</button>
