@@ -99,15 +99,32 @@
             var phoneInput = document.getElementById("phone-editor");
 
             // Add an event listener for input events
-            phoneInput.addEventListener("input", function(event) {
+            phoneInput.addEventListener("input", function(event)
+            {
                 // Get the input value
                 var inputValue = event.target.value;
 
                 // Validate the input against the regular expression
                 var regex = /^\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}$/;
-                if (!regex.test(inputValue)) {
+                if (!regex.test(inputValue))
+                {
                     // If the input doesn't match the regular expression, remove the invalid characters
                     event.target.value = inputValue.replace(/[^0-9()-.\s]/g, '');
+                }
+            });
+
+            var emailInput = document.getElementById("email-editor");
+
+            emailInput.addEventListener("input", function(event)
+            {
+                // get input value
+                var inputValue = event.target.value;
+
+                // validate input
+                var regex = /^[a-zA-Z0-9\-_+/\.]@[a-zA-Z0-9\-_+/\.].[a-zA-Z0-9\-_+/\.]$/;
+                if (!regex.test(inputValue))
+                {
+                    event.target.value = inputValue.replace(/[^a-zA-Z0-9@._-]/g, '');
                 }
             });
         </script>
