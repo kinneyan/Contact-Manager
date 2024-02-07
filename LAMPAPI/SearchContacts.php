@@ -12,7 +12,7 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email FROM Contacts WHERE (UserID LIKE ? AND FirstName LIKE ? AND LastName LIKE ?)");
+		$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email, ID FROM Contacts WHERE (UserID LIKE ? AND FirstName LIKE ? AND LastName LIKE ?)");
 		$searchuserId = "%" . $inData["userId"] . "%";
 		$searchfirst = "%" . $inData["firstName"] . "%";
 		$searchlast = "%" . $inData["lastName"] . "%";
@@ -28,7 +28,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '{"firstName":"' . $row["FirstName"] . '", "lastName":"' . $row["LastName"] . '", "phone":"' . $row["Phone"] . '","email":"' . $row["Email"] . '"}';
+			$searchResults .= '{"firstName":"' . $row["FirstName"] . '", "lastName":"' . $row["LastName"] . '", "phone":"' . $row["Phone"] . '","email":"' . $row["Email"] . '","contactId":"' . $row["ID"] . '" }';
 		}
 		$searchResults = rtrim($searchResults, ',');
 		
