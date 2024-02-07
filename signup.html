@@ -40,8 +40,9 @@
                 </div>
                 <div class="form-element">
                     <label for="password">Password</label>
-                    <input type="password" autocomplete="off" id="password" name="password">
+                    <input type="password" autocomplete="off" id="password" name="password" pattern=".{6,100}">
                     <span class="field-error" id="password-empty">Password cannot be empty</span>
+                    <span class="field-error" id="password-short">Password must be at least six characters</span>
                 </div>
                 <div class="form-element">
                     <label for="password-confirmation">Retype password</label>

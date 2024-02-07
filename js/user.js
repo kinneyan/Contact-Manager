@@ -137,6 +137,11 @@ function register()
     }
     if (exit) return false;
 
+    if (password.length < 6)
+    {
+        document.getElementById("password-short").style.display = "flex";
+    }
+
     registerFields =
     {
         firstName: firstName,
