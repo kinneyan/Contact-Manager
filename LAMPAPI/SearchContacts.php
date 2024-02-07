@@ -28,7 +28,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["FirstName"] . ' ' . $row["LastName"]. ' ' . $row["Phone"]. ' ' . $row["Email"] . '"';
+			$searchResults .= '{"firstName":"' . $row["FirstName"] . '", "lastName":"' . $row["LastName"] . '", "phone":"' . $row["Phone"] . '","email":"' . $row["Email"] . '"}';
 		}
 		$searchResults = rtrim($searchResults, ',');
 		
