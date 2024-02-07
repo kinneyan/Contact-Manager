@@ -7,13 +7,17 @@ $firstName = $inData["firstName"];
 $lastName = $inData["lastName"];
 $phone = $inData["phone"];
 $email = $inData["email"];
+$location = $inData["location"];
+$hairColor = $inData["hairColor"];
+$eyeColor = $inData["eyeColor"];
+$height = $inData["height"];
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=? WHERE UserID=? AND ID=?");
-    $stmt->bind_param("ssssii", $firstName, $lastName, $phone, $email, $userId, $contactId);
+    $stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=?, Location=?, HairColor=?, EyeColor=?, HeightCM=? WHERE UserID=? AND ID=?");
+    $stmt->bind_param("ssssssssii", $firstName, $lastName, $phone, $email, $location, $hairColor, $eyeColor, $height, $userId, $contactId);
     $stmt->execute();
     
     if ($stmt->affected_rows === 0) {
