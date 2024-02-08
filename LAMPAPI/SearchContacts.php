@@ -12,10 +12,24 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email, ID FROM Contacts WHERE (UserID LIKE ? AND FirstName LIKE ? AND LastName LIKE ?)");
+		
+		$searchParam = "%" . $inData["searchParam"] . "%";
 		$searchuserId = "%" . $inData["userId"] . "%";
-		$searchfirst = "%" . $inData["firstName"] . "%";
-		$searchlast = "%" . $inData["lastName"] . "%";
+		
+		if (strpos($inData["searchParam"], ' ') !== false) {
+			// Search by both first name and last name
+			$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email, ID FROM Contacts WHERE (UserID LIKE ?) AND (FirstName LIKE ? AND LastName LIKE ?)");
+			$splitTerms = explode(' ', $searchParam);
+			$searchfirst = $splitTerms[0];
+			$searchlast = $splitTerms[1];
+		} else {
+			// Search only by first name or last name
+			$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email, ID FROM Contacts WHERE (UserID LIKE ?) AND (FirstName LIKE ? OR LastName LIKE ?)");
+			$searchfirst = $searchParam;
+			$searchlast = $searchParam;
+		}
+		
+		
 		$stmt->bind_param("sss", $searchuserId, $searchfirst, $searchlast);
 		$stmt->execute();
 		
