@@ -20,7 +20,7 @@ function loadContacts(data)
         contacts[data.results[i].contactId] = data.results[i];
         
         // generate html
-        html += "<tr><td><a href=\"#\" id=\"" + data.results[i].contactId + "\"onclick=openContact(" + data.results[i].contactId + ")>" + data.results[i].firstName + " " +  data.results[i].lastName + "</a></td></tr>";
+        html += "<tr id=\"" + data.results[i].contactId + "\"><td><a href=\"#\" onclick=openContact(" + data.results[i].contactId + ")>" + data.results[i].firstName + " " +  data.results[i].lastName + "</a></td></tr>";
     }
     
     // inject html
@@ -199,6 +199,37 @@ function createContact()
             };
             resetFields();
             openContact(data.contactId);
+        });
+    }
+    catch(err)
+    {
+        console.log(err.message);
+    }
+}
+
+function deleteContact()
+{
+    if (currentContact < 0) return false;
+
+    fields = 
+    {
+        contactId: currentContact,
+        userId: userId
+    }
+
+    let payload = JSON.stringify(fields);
+    let url = apiURL + '/DeleteContact' + apiExtension;
+
+    try
+    {
+        $.post(url, payload, function(data, status)
+        {
+            // reset current view fields
+            resetFields();
+
+            // update contact list
+            let row = document.getElementById(fields.contactId);
+            row.parentNode.removeChild(row);
         });
     }
     catch(err)
