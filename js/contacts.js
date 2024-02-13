@@ -35,41 +35,24 @@ function openContact(contactId)
     currentContact = contactId;
     document.getElementById("current-fname").textContent = contacts[contactId].firstName;
     document.getElementById("current-lname").textContent = contacts[contactId].lastName;
-    document.getElementById("current-phone").textContent = contacts[contactId].phoneNumber;
+    document.getElementById("current-phone").textContent = contacts[contactId].phone;
     document.getElementById("current-email").textContent = contacts[contactId].email;
 }
 
 function loadContacts(data)
 {
     var html = "";
-    results = data.results;
-    for (var i = 0; i < results.length; i++)
+    
+    for (var i = 0; i < data.results.length; i++)
     {
-        var contact = results[i].split(" ");
-        var id = i;
-        var firstName = contact[0];
-        var lastName = contact[1];
-        var phone = contact[2];
-        var email = contact[3];
-
-        // skip contact if corrupt
-        if (firstName == "" || lastName == "" || phone == "" || email == "") break;
+        // add contact to local contact list
+        contacts[data.results[i].contactId] = data.results[i];
         
-        // add to contacts list
-        contacts[i] =
-        {
-            firstName: firstName,
-            lastName: lastName,
-            phoneNumber: phone,
-            email: email,
-            id: id
-        };
-
-        // generate html tags
-        html += "<tr><td><a href=\"#\" onclick=openContact(" + id + ")>" + firstName + " " +  lastName + "</a></td></tr>";
+        // generate html
+        html += "<tr><td><a href=\"#\" id=\"" + data.results[i].contactId + "\"onclick=openContact(" + data.results[i].contactId + ")>" + data.results[i].firstName + " " +  data.results[i].lastName + "</a></td></tr>";
     }
-
-    // inject html text
+    
+    // inject html
     document.getElementById("contact-table-data").innerHTML = html;
 }
 
@@ -77,7 +60,7 @@ function searchContacts()
 {
     let searchData = document.getElementById("search-bar").value;
     let searchInfo = {
-        firstName: searchData,
+        searchParam: searchData,
         userId: userId
     }
     let payload = JSON.stringify(searchInfo);
@@ -225,17 +208,16 @@ function createContact()
     {
         $.post(url, payload, function(data, status)
         {
-            newId = contacts.length + 1;
-            contacts[newId] =
+            contacts[data.contactId] =
             {
                 firstName: fields.firstName,
                 lastName: fields.lastName,
                 phoneNumber: fields.phone,
                 email: fields.email,
-                id: newId
+                id: data.contactId
             };
             resetFields();
-            openContact(newId);
+            openContact(data.contactId);
         });
     }
     catch(err)
