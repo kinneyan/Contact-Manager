@@ -18,13 +18,13 @@
 		
 		if (strpos($inData["searchParam"], ' ') !== false) {
 			// Search by both first name and last name
-			$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email, ID FROM Contacts WHERE (UserID LIKE ?) AND (FirstName LIKE ? AND LastName LIKE ?)");
+			$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email, ID, Location, HairColor, EyeColor, HeightCM FROM Contacts WHERE (UserID LIKE ?) AND (FirstName LIKE ? AND LastName LIKE ?)");
 			$splitTerms = explode(' ', $searchParam);
 			$searchfirst = $splitTerms[0];
 			$searchlast = $splitTerms[1];
 		} else {
 			// Search only by first name or last name
-			$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email, ID FROM Contacts WHERE (UserID LIKE ?) AND (FirstName LIKE ? OR LastName LIKE ?)");
+			$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email, ID, Location, HairColor, EyeColor, HeightCM FROM Contacts WHERE (UserID LIKE ?) AND (FirstName LIKE ? OR LastName LIKE ?)");
 			$searchfirst = $searchParam;
 			$searchlast = $searchParam;
 		}
@@ -42,7 +42,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '{"firstName":"' . $row["FirstName"] . '", "lastName":"' . $row["LastName"] . '", "phone":"' . $row["Phone"] . '","email":"' . $row["Email"] . '","contactId":"' . $row["ID"] . '" }';
+			$searchResults .= '{"firstName":"' . $row["FirstName"] . '", "lastName":"' . $row["LastName"] . '", "phone":"' . $row["Phone"] . '","email":"' . $row["Email"] . '","location":"' . $row["Location"] . '","haircolor":"' . $row["HairColor"] . '","eyeColor":"' . $row["EyeColor"] . '","height":"' . $row["HeightCM"] .'","contactId":"' . $row["ID"] . '" }';
 		}
 		$searchResults = rtrim($searchResults, ',');
 		
