@@ -1,35 +1,6 @@
 let contacts = {};
 let currentContact = -1;
 
-function addContact() {
-
-    let firstName = document.getElementById("contactsFirstName").value;
-    let lastName = document.getElementById("contactsLastName").value;
-    let phone = document.getElementById("contactsPhoneNumber").value;
-    let email = document.getElementById("contactsEmail").value;
-
-    let contactInfo = {
-        firstName: firstName,
-        lastName: lastName,
-        phone: phone,
-        email: email,
-        userId: userId
-    };
-
-
-    let payload = JSON.stringify(contactInfo);
-    let url = apiURL + '/AddContact' + apiExtension;
-
-    try {
-        $.post(url, payload, function(data, status)
-        {
-            console.log("Contact has been added");
-        });
-    } catch (err) {
-        console.log(err.message);
-    }
-}
-
 function openContact(contactId)
 {
     currentContact = contactId;
