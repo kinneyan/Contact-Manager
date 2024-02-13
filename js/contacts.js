@@ -172,6 +172,12 @@ function createContact()
         email: document.getElementById("email-editor").value
     }
 
+    if (fields.firstName == "")
+    {
+        resetFields();
+        return false;
+    }
+
     let payload = JSON.stringify(fields);
     let url = apiURL + '/AddContact' + apiExtension;
 
