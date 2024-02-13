@@ -117,7 +117,7 @@
     transform: translateY(2px);
 }
             
-            .field-error
+.field-error
 {
     font-weight: bold;
     display: none;
