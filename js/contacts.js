@@ -129,19 +129,45 @@ function saveEdits()
     document.getElementById("current-phone").style.display = "inline-block";
     document.getElementById("email-editor").style.display = "none";
     document.getElementById("current-email").style.display = "inline-block";
+    
+    // update contact in database
+    fields = 
+    {
+        userId: userId,
+        contactId: contacts[currentContact].contactId,
+        firstName: document.getElementById("fname-editor").value,
+        lastName: document.getElementById("lname-editor").value,
+        phone: document.getElementById("phone-editor").value,
+        email: document.getElementById("email-editor").value,
+        location: "",
+        hairColor: "",
+        eyeColor: "",
+        height: 0
+    }
+
+    let payload = JSON.stringify(fields);
+    let url = apiURL + '/UpdateContact' + apiExtension;
+
+    try
+    {
+        $.post(url, payload, function (data, status)
+        {
+            resetFields();
+        });
+    }
+    catch (err)
+    {
+        console.log(err.message);
+        return false;
+    }
 
     // save name
-    contacts[currentContact].firstName = document.getElementById("fname-editor").value;
-    contacts[currentContact].lastName = document.getElementById("lname-editor").value;
+    contacts[currentContact].firstName = fields.firstName;
+    contacts[currentContact].lastName = fields.lastName;
 
     // save contact fields
-    contacts[currentContact].phoneNumber = document.getElementById("phone-editor").value;
-    contacts[currentContact].email = document.getElementById("email-editor").value;
-
-    openContact(currentContact);
-
-    // update contact in database
-    // DO ONCE UPDATE API ENDPOINT IS CREATED
+    contacts[currentContact].phone = fields.phone;
+    contacts[currentContact].email = fields.email;
 }
 
 function newContact()
@@ -193,7 +219,7 @@ function createContact()
             {
                 firstName: fields.firstName,
                 lastName: fields.lastName,
-                phoneNumber: fields.phone,
+                phone: fields.phone,
                 email: fields.email,
                 id: data.contactId
             };
