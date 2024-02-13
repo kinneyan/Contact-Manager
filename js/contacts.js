@@ -100,6 +100,10 @@ function resetFields()
     document.getElementById("current-lname").textContent = "";
     document.getElementById("current-phone").textContent = "";
     document.getElementById("current-email").textContent = "";
+    document.getElementById("fname-editor").value = "";
+    document.getElementById("lname-editor").value = "";
+    document.getElementById("phone-editor").value = "";
+    document.getElementById("email-editor").value = "";
 
     if (currentContact > 0) openContact(currentContact);
     else currentContact = -1;
