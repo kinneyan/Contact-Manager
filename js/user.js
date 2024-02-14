@@ -152,7 +152,7 @@ function register()
     {
         $.post(url, payload, function(data, status)
         {
-            userId = data.id;
+            userId = data.userId;
             if (userId < 1)
             {
                 document.getElementById("login-response").innerHTML = "Error while creating account";
