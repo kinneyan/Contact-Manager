@@ -1,153 +1,408 @@
-.banner
+@font-face 
 {
-    text-align: left;
-    display: flex;
-    justify-content:space-between;
-    margin: 10px;
+    font-family: "Cabin", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
 }
 
-.banner a
-{
-    text-decoration: none;
-}
-
-#contacts
-{
-    display: flex;
-    justify-content: center;
-    height: 400px;
-}
-
-#contacts-list
-{
-    width: 30%;
-    border: 1px solid #ddd;
-    height: 100%;
-}
-
-#contacts table
-{
+.add-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
-    border-collapse: collapse;
-}
-
-#contacts td, #contacts th
-{
-    padding: 8px;
-}
-
-#contacts th
-{
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    /* CHANGE COLOR WITH PALETTE */
-    background-color: red;
-    color: white;
-}
-
-#current-pane
-{
-    width: 30%;
     height: 100%;
-    border: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
+    display: none;
+    font-family: Cabin;
 }
 
-#current-contact td, #current-contact th
-{
+.add {
+    border-radius: 10px;
+    display: none;
+    background-color: white;
+    border: 2px solid black;
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    width: 30%;
+    height: 70%;
+    font-family: Cabin;
+}
+
+.add input {
+    background-color: aliceblue;
+    border-radius: 5px;
+    padding: 10px;
+    height: 30px;
+    border: 2px solid dimgray;
+    border-bottom: 3px solid dimgray;
+    width: 90%;
+    position: relative;
+    left: 5%;
+    box-sizing: border-box;
+    transition: all 300ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+.add label {
+    position: relative;
+    display: grid;
+    padding-bottom: 5px;
+    padding-right: 30px;
+    left: 5%;
+    font-size: 20px;
+}
+
+
+.add input:focus {
+    outline: none;
+    border: 2px solid royalblue;
+    border-bottom: 3px solid royalblue;
+}
+
+.add div {
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.add select {
+    width: 90%;
+    margin-top: 20px;
+    position: relative;
+    left: 5%;
+}
+
+.add button {
+    position: relative;
+    left: 15%;
+    margin-top: 12px;
+    width: 70%;
     border: none;
+    height: 45px;
+    background-color: gainsboro;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 2px solid black;
+    font-family: Cabin;
+    font-size: 25px;
 }
 
-#current-name
-{
-    display: flex;
-    justify-content: center;
+.add #closeAddBtn {
+    background-color: crimson;
 }
 
-
-#current-name span
-{
-    padding: 2px;
+.add #closeAddbtn:hover {
+    background-color: firebrick;
 }
 
-.current-contact-details
-{
-    display: flex;
+.add button:hover {
+    cursor: pointer;
+    background-color: silver;
 }
 
-.current-label
-{
-    text-align: left;
-    width: 120px;
+.add button:active {
+    transform: translateY(2px);
+    background-color: gray;
 }
 
-.current-data
-{
-    margin: 0 auto;
-    text-align: left;
+.header-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 75px;
+    background-color: hsla(360, 0%, 12%, 1);
+    overflow: hidden;
+    font-family: Cabin;
 }
 
-#modify-contact
-{
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: auto;
-    margin-bottom: 5px;
-}
-
-.contact-button
-{
-    width: 70px;
-}
-
-#contact-save-button,
-#new-contact-save,
-#cancel-button
-{
-    display: none;
-}
-
-.name-editor
-{
-    display: none;
-}
-
-.name-editor input,
-.field-editor
-{
-    width: 25%;
-}
-
-.field-editor
-{
-    display: none;
-}
-
-#search
-{
-    display: flex;
-    justify-content: center;
-    margin: 5px;
-}
-
-#search *
-{
-    margin: 3px;
-}
-
-#contact-manager
-{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-#contacts a,
-#contacts a:visited,
-#contacts a:focus
-{
+.header-bar a {
+    box-sizing: border-box;
+    color: floralwhite;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
+    float: left;
     text-decoration: none;
-    color: black;   
+    height: inherit;
+}
+
+.header-bar a.header-logout {
+    float: right;
+}
+
+.header-bar a:hover {
+    background-color: hsla(360, 0%, 53%, 0.84);
+    height: inherit;
+}
+
+.header-bar a:active {
+    background-color: hsla(360, 0%, 36%, 0.97);
+}
+
+.main-form {
+    position: fixed;
+    border: 1px solid black;
+    left: 15%;
+    top: 15%;
+    width: 70%;
+    height: 80%;
+    box-sizing: border-box;
+    font-family: Cabin;
+}
+
+.left-form {
+    box-sizing: border-box;
+    border: 1px solid black;
+    position: absolute;
+    width: 30%;
+    height: 90%;
+    text-align: center;
+    font-size: 24px;
+}
+
+
+.page-form {
+    position: absolute;
+    border: 1px solid black;
+    box-sizing: border-box;
+    bottom: 0%;
+    width: 100%;
+    height: 10%;
+}
+
+.page-form button {
+    height: 100%;
+    width: 150px;
+    text-align: center;
+    font-size: 22px;
+    box-sizing: border-box;
+    font-family: Cabin;
+}
+
+.page-count
+{
+    position: absolute;
+    box-sizing: border-box;
+    left: 42.5%;
+    top: 11px;
+    width: 15%;
+    text-align: center;
+    text-family: Cabin;
+    font-size: 35px;
+}
+
+.contact-select {
+    border: 1px solid black;
+    height: 10%;
+    box-sizing: border-box;
+    text-align: left;
+    padding-left: 18px;
+    padding-top: 18px;
+}
+
+.contact-select:hover {
+    background-color: slategray;
+}
+
+.contact-select button
+{
+    position: relative;
+    top: -5px;
+    right: 10px;
+    float: right;
+    height: 80%;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: hsla(360, 96%, 62%, 1);
+    width: 23%;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 2px;
+    font-family: Cabin;
+}
+
+.contact-select button:hover
+{
+    cursor: pointer;
+    background-color: hsla(352, 89%, 42%, 1);
+}
+
+.contact-select button:active
+{
+    background-color: hsla(352, 87%, 32%, 1);
+    transform: translateY(2px);
+}
+
+.left-form .active {
+    background-color: skyblue;
+}
+
+.right-form {
+    border: 1px solid black;
+    position: relative;
+    left: 30%;
+    width: 70%;
+    height: 90%;
+    box-sizing: border-box;
+}
+
+.name-div
+{
+    position: relative;
+    border: 1px solid black;
+    width: 100%;
+    height: 22.5%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 65px;
+    padding-top: 25px;
+}
+
+.phone-email-div
+{
+    border: 1px solid black;
+    box-sizing: border-box;
+    width: 100%;
+    height: 22.5%;
+    text-align: center;
+}
+
+.phone-email-div div
+{
+    position: relative;
+    box-sizing: border-box;
+    width: 50%;
+    height: 100%;
+}
+
+.location-div
+{
+    position: relative;
+    border: 1px solid black;
+    height: 22.5%;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.search-form
+{
+    display: flex;
+    border: 1px solid black; 
+    box-sizing: border-box; 
+    width: 100%; 
+    height: 10%;   
+}
+
+.search-form label
+{
+    
+    border: 1px solid black;
+    box-sizing: border-box;
+    height: 100%;
+    width: 15%;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 25px;
+}
+
+.search-form input
+{
+    box-sizing: border-box;
+    border: 2px solid black;
+    height: 100%;
+    width: 85%;
+    font-family: Cabin;
+    font-size: 24px;
+}
+
+.search-form button
+{
+    box-sizing: border-box;
+    height: 100%;
+    width: 15%;
+    font-family: Cabin;
+    font-size: 18px;
+}
+
+.contact-select-header
+{
+    padding-top: 18px;
+    text-align: left;
+    padding-left: 18px;
+}
+
+#addContacts-button
+{
+    position: relative;
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: darkseagreen;
+    border: 2px solid black;
+    border-radius: 20px;
+    height: 80%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    top: -5px;
+    font-family: Cabin;
+}
+
+#addContacts-button:hover
+{
+    cursor: pointer;
+    background-color: mediumseagreen;
+}
+
+#addContacts-button:active
+{
+    background-color: seagreen;
+    transform: translateY(2px);
+}
+
+.div-label
+{
+    color: gray;
+    border-bottom: 3px solid lightgray;
+}
+
+.contact-info-div button
+{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-family: Cabin;
+    font-size: 18px;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.contact-info-div button:hover
+{
+    cursor: pointer;
+    background-color: hsla(360, 0%, 57%, 1);
+}
+
+.contact-info-div button:active
+{
+    background-color: hsla(360, 0%, 35%, 1);
+    transform: translateY(2px);
+}
+
+.contact-info-div input
+{
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 75%;
+    height: 45px;
+    font-family: Cabin;
+    font-size: 40px;
 }
