@@ -73,6 +73,7 @@ function logout()
     firstName = "";
     lastName = "";
     window.location.href = "index.html";
+    document.cookie = "";
 }
 
 function register()
