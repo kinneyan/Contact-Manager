@@ -1,8 +1,8 @@
 let contacts = {};
 let currentContact = -1;
 
-function addContact() {
-
+function addContact() 
+{
     let firstName = document.getElementById("contactsFirstName").value;
     let lastName = document.getElementById("contactsLastName").value;
     let phone = document.getElementById("contactsPhoneNumber").value;
@@ -103,6 +103,7 @@ function editContact()
     document.getElementById("contact-delete-button").style.display = "none";
     document.getElementById("cancel-button").style.display = "inline-block";
     document.getElementById("contact-save-button").style.display = "inline-block";
+    document.getElementById("add-contact").style.display = "none";
 
     // update name labels
     document.getElementById("current-name").style.display = "none";
@@ -135,6 +136,7 @@ function resetFields()
     document.getElementById("current-email").style.display = "inline-block";
     document.getElementById("email-editor").style.display = "none";
     
+    document.getElementById("add-contact").style.display = "inline-block";
     document.getElementById("cancel-button").style.display = "none";
     document.getElementById("new-contact-save").style.display = "none";
     document.getElementById("contact-edit-button").style.display = "inline-block";
@@ -157,9 +159,9 @@ function saveEdits()
     document.getElementById("cancel-button").style.display = "none";
     document.getElementById("new-contact-save").style.display = "none";
     document.getElementById("contact-delete-button").style.display = "inline-block";
-
     document.getElementById("contact-save-button").style.display = "none";
     document.getElementById("contact-edit-button").style.display = "inline-block";
+    document.getElementById("add-contact").style.display = "inline-block";
     
     // update name labels
     document.getElementById("fname-editor-data").style.display = "none";
@@ -194,6 +196,7 @@ function newContact()
     document.getElementById("cancel-button").style.display = "inline-block";
     document.getElementById("new-contact-save").style.display = "inline-block";
     document.getElementById("contact-save-button").style.display = "none";
+    document.getElementById("add-contact").style.display = "none";
 
     // update name labels
     document.getElementById("current-name").style.display = "none";

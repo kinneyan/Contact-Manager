@@ -63,14 +63,23 @@ button
     width: 45%;
 }
 
+#search,
+#modify-contact
+{
+    background-color: #ececec;
+    height: 35px;
+}
+
 #search
 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5px;
-    background-color: #DDDDDD;
-    border-radius: 5px;
+}
+
+#search label 
+{
+    font-size: 15px;
 }
 
 #search *
@@ -82,7 +91,8 @@ button
 {
     margin: 5px;
     border: none;
-    background-color: #DDDDDD;
+    background-color: #ececec;
+    width: 50%;
 }
 
 #search input:focus
@@ -98,23 +108,26 @@ button
     height: 100%;
 }
 
+#contacts-list,
+#current-pane
+{
+    height: 100%;
+    border: 1px solid #c4c4c4;
+    background-color: #FAF9F6;
+}
+
 #contacts-list
 {
     width: 15%;
-    border: 1px solid #ddd;
-    height: 100%;
-    background-color: #FAF9F6;
     border-radius: 10px 0px 0px 10px;
 }
 
 #current-pane
 {
     width: 30%;
-    height: 100%;
-    border: 1px solid #ddd;
     display: flex;
     flex-direction: column;
-    background-color: #FAF9F6;
+    justify-content: space-between;
     border-radius: 0px 10px 10px 0px;
 }
 
@@ -188,11 +201,12 @@ button
     justify-content: space-evenly;
     margin-top: auto;
     margin-bottom: 5px;
+    background-color:
 }
 
 .contact-button
 {
-    width: 70px;
+    width: 100px;
 }
 
 #contact-save-button,
@@ -225,4 +239,11 @@ button
 {
     text-decoration: none;
     color: black;   
+}
+
+#contact-footer
+{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }

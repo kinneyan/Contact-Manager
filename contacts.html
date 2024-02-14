@@ -12,7 +12,7 @@
         <script type="text/javascript" src="js/cookie.js"></script>
         <script type="text/javascript">
             document.addEventListener('DOMContentLoaded', function(){
-                //getCookie();
+                getCookie();
             }, {once: true});
         </script>
     </head>
@@ -22,22 +22,19 @@
             <a href="#" id="logout-button" onclick="logout();"><span>Log out</span></a>
         </div>
         <div id="display">
-            <div id="contact-manager">
-                <div id="search">
-                    <label for="search-bar">Search</label>
-                    <input id="search-bar" type="text" placeholder="Beck">
-                    <button id="search-button" onclick="searchContacts();">Search</button>
-                </div>
-                <div class="buttons">
-                    <button id="add-contact" onclick="newContact();">Create contact</button>
-                </div>
-            </div>
             <div id="contacts">
                 <div id="contacts-list">
                     <table id="contacts-table">
                         <thead>
                             <tr>
                                 <th>Contacts</th>
+                            </tr>
+                            <tr>
+                                <td id="search">
+                                    <label for="search-bar">Search</label>
+                                    <input id="search-bar" type="text" placeholder="Beck">
+                                    <button id="search-button" onclick="searchContacts();">Search</button>
+                                </td>
                             </tr>
                         </thead>
                         <tbody id="contact-table-data">
@@ -49,6 +46,15 @@
                         <thead>
                             <tr>
                                 <th>Details</th>
+                            </tr>
+                            <tr>
+                                <td id="modify-contact">
+                                    <button class="contact-button" id="add-contact" onclick="newContact();">Create contact</button>
+                                    <button class="contact-button" id="cancel-button" onclick="resetFields()">Cancel</button>
+                                    <button class="contact-button" id="contact-edit-button" onclick="editContact();">Edit</button>
+                                    <button class="contact-button" id="contact-save-button" onclick="saveEdits();">Save</button>
+                                    <button class="contact-button" id="new-contact-save" onclick="createContact();">Create</button>
+                                </td>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,12 +92,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div id="modify-contact">
-                        <button class="contact-button" id="cancel-button" onclick="resetFields()">Cancel</button>
-                        <button class="contact-button" id="contact-edit-button" onclick="editContact();">Edit</button>
-                        <button class="contact-button" id="contact-save-button" onclick="saveEdits();">Save</button>
+                    <div id="contact-footer">
                         <button class="contact-button" id="contact-delete-button">Delete</button>
-                        <button class="contact-button" id="new-contact-save" onclick="createContact();">Create</button>
                     </div>
                 </div>
             </div>
