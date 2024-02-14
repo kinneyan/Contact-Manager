@@ -1,98 +1,340 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Contacts</title>
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="css/contacts.css">
-        <script type="text/javascript" src="js/main.js"></script>
-        <script type="text/javascript" src="js/contacts.js"></script>
-        <script type="text/javascript" src="js/user.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/cookie.js"></script>
-        <script type="text/javascript">
+<title>Contacts | Joe's Contact Manager</title>
+<head>
+    <meta charset="utf-8">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/contacts.css">
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/contacts.js"></script>
+    <script type="text/javascript" src="js/user.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/cookie.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet">
+    <script type="text/javascript">
             document.addEventListener('DOMContentLoaded', function(){
                 getCookie();
             }, {once: true});
-        </script>
-    </head>
-    <body>
-        <div class="banner">
-            <h3><a href="index.html">Joe's Contact Manager</a></h3>
-            <span><a href="#" id="logout-button" onclick="logout();">Log out</a></span>
+    </script>
+</head>
+<body>
+    <!-- Top navigation bar -->
+    <div class="header-bar">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="#" class="header-logout" onclick="logout();">
+            Logout
+        </a>
+        
+    </div>
+
+    <!-- The main center item -->
+    <div class="main-form">
+
+        <!-- Section on the left where contacts will populate -->
+        <div class="left-form" id="left-form">
+
+            <!-- Header for the left side with button to add a contact -->
+            <div class="contact-select-header" style="border: 1px solid black; 
+                                                      height: 10%; box-sizing: border-box;">                           
+                Contacts
+
+                <button  id="addContacts-button" onclick="openAddForm()">
+                    add contact
+                </button>
+
+            </div>
+
+            <!-- Tester contacts -->
+            <div class="contact-select active" id="contact1" onclick="selectContact(id)">
+
+                tester
+
+                <button id="contact1-delete" onclick="alert('test');">
+                    Delete
+                </button>
+
+            </div>
+
+            <!-- Tester contacts-->
+            <div class="contact-select" id="contact2" onclick="selectContact(id)">
+
+                tester
+
+                <button id="contact1-delete" onclick="alert('test');">
+                    Delete
+                </button>
+
+            </div>
+
         </div>
-        <div id="contact-manager">
-            <div class="buttons">
-                <button id="add-contact" onclick="newContact();">New contact</button>
+
+        <!-- Section on the right where the contact info will populate -->
+        <div class="right-form" id="right-form">
+
+            <!-- Search bar -->
+            <div class="search-form">
+
+                <input name="search-contacts" id="search-contacts" placeholder="Search contacts">
+
+                <button id="searchBtn">
+                    Search
+                </button>
+
             </div>
-            <div id="search">
-                <label for="search-bar">Search contacts</label>
-                <input id="search-bar" type="text">
-                <button id="search-button" onclick="searchContacts();">Search</button>
-            </div>
-        </div>
-        <div id="contacts">
-            <div id="contacts-list">
-                <table id="contacts-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                        </tr>
-                    </thead>
-                    <tbody id="contact-table-data">
-                    </tbody>
-                </table>
-            </div>
-            <div id="current-pane">
-                <table id="current-contact">
-                    <thead>
-                        <tr>
-                            <th>Contact details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="current-name">
-                                <span id="current-fname"></span>
-                                <span id="current-lname"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="current-contact-details name-editor" id="fname-editor-data">
-                                <label class="current-label" for="fname-editor" id="fname-label">First name</label>
-                                <input class="current-data" type="text" id="fname-editor">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="current-contact-details name-editor" id="lname-editor-data">
-                                <label class="current-label" for="lname-editor" id="lname-label">Last name</label>
-                                <input class="current-data" type="text" id="lname-editor">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="current-contact-details">
-                                <span class="current-label">Phone number</span>
-                                <span class="current-data" id="current-phone"></span>
-                                <input class="current-data field-editor" type="text" id="phone-editor">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="current-contact-details">
-                                <span class="current-label">Email</span>
-                                <span class="current-data" id="current-email"></span>
-                                <input class="current-data field-editor" type="text" id="email-editor">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div id="modify-contact">
-                    <button class="contact-button" id="cancel-button" onclick="resetFields()">Cancel</button>
-                    <button class="contact-button" id="contact-edit-button" onclick="editContact();">Edit</button>
-                    <button class="contact-button" id="contact-save-button" onclick="saveEdits();">Save</button>
-                    <button class="contact-button" id="contact-delete-button">Delete</button>
-                    <button class="contact-button" id="new-contact-save" onclick="createContact();">Create</button>
+
+            <!-- Section below the search bar where info populates -->
+            <div class="contact-info-div" style="display: inline">
+
+                <!-- Section that holds contact name -->
+                <div class="name-div">
+
+                    <div class="div-label" style="position: absolute; width: 60px; 
+                                                height: 30px; font-size: 18px; top: 5px">
+                        Name
+                    </div>
+
+                    <div id="contact-name">
+                        tester
+                    </div>
+
+                    <button id="contact-name_edit" onclick="editContactAttribute(id);">
+                        edit
+                    </button>
+
                 </div>
+
+                <!-- Section that holds contact phone and email -->
+                <div class="phone-email-div">
+
+                    <!-- Section that holds contact phone -->
+                    <div style="float: left; font-size: 40px; padding-top: 45px; 
+                                border-right: 1px solid black;">
+
+                        <div class="div-label" style="position: absolute; width: 60px; 
+                                                    height: 30px; font-size: 18px; top: 5px;">
+                            Phone
+                        </div>
+
+                        <div style="width: 100%;" id="contact-phone">
+                            tester
+                        </div>
+
+                        <button id="contact-phone_edit" onclick="editContactAttribute(id);">
+                            edit
+                        </button>
+
+                    </div>
+
+                    <!-- Section that holds contact Email -->
+                    <div style="float: right; font-size: 20px; padding-top: 55px; 
+                                border-left: 1px solid black">
+
+                        <div class="div-label" style="position: absolute; width: 60px; 
+                                                    height: 30px; font-size: 18px; top: 5px;">
+                            Email
+                        </div>
+
+                        <div style="width: 100%;" id="contact-email">
+                            tester
+                        </div>
+
+                        <button id="contact-email_edit" onclick="editContactAttribute(id);">
+                            edit
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Section that holds the contact location -->
+                <div class="location-div" style="font-size: 40px; padding-top: 40px">
+
+                    <div class="div-label" style="position: absolute; width: 160px; 
+                                                height: 30px; font-size: 18px; top: 5px;">
+                            Last known Location
+                    </div>
+
+                    <div id="contact-location">
+                        tester
+                    </div>
+
+                    <button id="contact-location_edit" onclick="editContactAttribute(id);">
+                        edit
+                    </button>
+
+                </div>
+
+                <!-- Section that holds contact eye color and height *SAME CLASS AS PHONE AND EMAIL* -->
+                <div class="phone-email-div">
+
+                    <!-- Section that holds contact eye color -->
+                    <div style="float: left; font-size: 40px; padding-top: 45px; 
+                                border-right: 1px solid black;">
+
+                        <div class="div-label" style="position: absolute; width: 75px; 
+                                                    height: 30px; font-size: 18px; top: 5px;">
+                            Eye color
+                        </div>
+
+                        <div style="width: 100%;" id="contact-eyes">
+                            tester
+                        </div>
+
+                        <button id="contact-eyes_edit" onclick="editContactAttribute(id);">
+                            edit
+                        </button>
+
+                    </div>
+
+                    <div style="float: right; font-size: 40px; padding-top: 45px; 
+                                border-left: 1px solid black">
+
+                        <div class="div-label" style="position: absolute; width: 95px; 
+                                                    height: 30px; font-size: 18px; top: 5px;">
+                            Height (cm)
+                        </div>
+
+                        <div style="width: 100%;" id="contact-height">
+                            tester
+                        </div>
+
+                        <button id="contact-height_edit" onclick="editContactAttribute(id);">
+                            edit
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
-    </body>
+
+        <!-- Section that holds the pagination *WIP* -->
+        <div class="page-form">
+
+            <button onclick="alert('WIP :(')">
+                Previous Page
+            </button>
+
+            <div class="page-count">
+                Page 1
+            </div>
+
+            <button style="float: right" onclick="alert('WIP :(')">
+                Next Page
+            </button>
+
+        </div>
+
+    </div>
+    
+    <!-- The background for new contact form -->
+    <div class="add-form" id="add-form" onclick="closeAddForm()">
+    </div>
+
+    <!-- The add content form -->
+    <div class="add" id="add">
+	<form action="javascript:addContact()">        
+        <!-- Section for first name input-->
+        <div>
+
+            <label for="firstName">
+                First name
+            </label>
+
+            <input required type="text" placeholder="First name" id="firstName" name="firstName">
+
+        </div>
+        
+        <!-- Section for last name input -->
+        <div>
+
+            <label for="lastName">
+                Last name
+            </label>
+
+            <input required type="text" placeholder="Last name" id="lastName" name="lastName">
+
+        </div>
+        
+        <!-- Section for phone input-->
+        <div>
+
+            <label for="phone">
+                Phone number
+            </label>
+
+            <input required type="text" placeholder="Phone number" id="phone" name="phone">
+
+        </div>
+        
+        <!-- Section for email input -->
+        <div>
+
+            <label for="email">
+                Email
+            </label>
+
+            <input required type="text" placeholder="Email" id="email" name="email">
+
+        </div>
+        
+        <!-- Section for location input -->
+        <div>
+
+            <label for="location">
+                Last known location
+            </label>
+
+            <input required type="text" placeholder="Last known location" id="location" name="location">
+
+        </div>
+        
+        <!-- Section for bother height and eye color input-->
+        <div style="margin-bottom: -5px">
+
+            <label for="heightCM">
+                Height (cm)
+            </label>
+
+            <input required type="text" placeholder="Height (cm)" id="heightCM" name="heightCM">
+
+            <select required id="eyeColor" name="eyeColor">
+
+                <option label="Please select an eye color" disabled selected>
+                </option>
+
+                <option value="brownEyes">
+                    Brown Eyes
+                </option>
+
+                <option value="blueEyes">
+                    Blue Eyes
+                </option>
+
+                <option value="greenEyes">
+                    Green Eyes
+                </option>
+
+            </select>
+
+        </div>
+        
+        <!-- Button section to add contact or close form-->
+        <div>
+            <button type="submit" id="AddBtn">Add contact</button><button type="button" id="closeAddBtn" onclick="closeAddForm()">Close</button>
+        </div>
+        </form>
+    </div>
+    
+    
+</body>
+
 </html>
