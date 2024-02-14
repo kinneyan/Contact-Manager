@@ -1,8 +1,7 @@
 body
 {
     margin: 0px;
-    padding: 2px;
-    background-color: #FAF9F6;
+    background-color: #F6F5F2;
 }
 
 a,
@@ -23,7 +22,13 @@ a:active
     width: 100%;
     height: 10%;
     box-sizing: border-box;
+    background-color: #333333;
+    margin-bottom: 20px;
+}
 
+.banner a 
+{
+    color: #FAF9F6;
 }
 
 .banner h3,
@@ -53,12 +58,28 @@ a:active
 {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 5px;
+    background-color: #DDDDDD;
+    border-radius: 5px;
+
 }
 
 #search *
 {
     margin: 3px;
+}
+
+#search input 
+{
+    margin: 5px;
+    border: none;
+    background-color: #DDDDDD;
+}
+
+#search input:focus
+{
+    outline: none;
 }
 
 #contacts
@@ -74,6 +95,7 @@ a:active
     width: 15%;
     border: 1px solid #ddd;
     height: 100%;
+    background-color: #FAF9F6;
 }
 
 #current-pane
@@ -83,6 +105,7 @@ a:active
     border: 1px solid #ddd;
     display: flex;
     flex-direction: column;
+    background-color: #FAF9F6;
 }
 
 #contacts table
@@ -101,9 +124,8 @@ a:active
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    /* CHANGE COLOR WITH PALETTE */
-    background-color: red;
-    color: white;
+    background-color: #333333;
+    color: #FAF9F6;
 }
 
 #current-contact td, #current-contact th

@@ -12,7 +12,7 @@
         <script type="text/javascript" src="js/cookie.js"></script>
         <script type="text/javascript">
             document.addEventListener('DOMContentLoaded', function(){
-                getCookie();
+                //getCookie();
             }, {once: true});
         </script>
     </head>
@@ -24,8 +24,8 @@
         <div id="display">
             <div id="contact-manager">
                 <div id="search">
-                    <label for="search-bar">Search contacts</label>
-                    <input id="search-bar" type="text">
+                    <label for="search-bar">Search</label>
+                    <input id="search-bar" type="text" placeholder="John Doe">
                     <button id="search-button" onclick="searchContacts();">Search</button>
                 </div>
                 <div class="buttons">
@@ -37,7 +37,7 @@
                     <table id="contacts-table">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Contacts</th>
                             </tr>
                         </thead>
                         <tbody id="contact-table-data">
@@ -48,7 +48,7 @@
                     <table id="current-contact">
                         <thead>
                             <tr>
-                                <th>Contact details</th>
+                                <th>Details</th>
                             </tr>
                         </thead>
                         <tbody>
