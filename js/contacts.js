@@ -198,23 +198,18 @@ function saveEdits()
 
     let payload = JSON.stringify(fields);
     let url = apiURL + '/UpdateContact' + apiExtension;
+    
+    beforeContact = contacts[currentContact];
 
     try
     {
         $.post(url, payload, function (data, status)
         {
-            // save name
-            contacts[currentContact].firstName = fields.firstName;
-            contacts[currentContact].lastName = fields.lastName;
-        
-            // save contact fields
-            contacts[currentContact].phone = fields.phone;
-            contacts[currentContact].email = fields.email;
-            contacts[currentContact].location = fields.location;
-            contacts[currentContact].haircolor = fields.haircolor;
-            contacts[currentContact].eyeColor = fields.eyeColor;
-            contacts[currentContact].height = fields.height;
-            resetFields();
+            if (error != "")
+            {
+                contacts[currentContact] = beforeContact;
+                resetFields();
+            }
         });
     }
     catch (err)
@@ -222,6 +217,19 @@ function saveEdits()
         console.log(err.message);
         return false;
     }
+
+    // save name
+    contacts[currentContact].firstName = fields.firstName;
+    contacts[currentContact].lastName = fields.lastName;
+
+    // save contact fields
+    contacts[currentContact].phone = fields.phone;
+    contacts[currentContact].email = fields.email;
+    contacts[currentContact].location = fields.location;
+    contacts[currentContact].haircolor = fields.haircolor;
+    contacts[currentContact].eyeColor = fields.eyeColor;
+    contacts[currentContact].height = fields.height;
+    resetFields();
 }
 
 function newContact()
