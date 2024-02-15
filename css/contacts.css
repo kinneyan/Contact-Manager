@@ -172,7 +172,6 @@ button
     justify-content: center;
 }
 
-
 #current-name span
 {
     padding: 2px;
@@ -186,7 +185,7 @@ button
 .current-label
 {
     text-align: left;
-    width: 120px;
+    width: 200px;
 }
 
 .current-data
@@ -201,7 +200,6 @@ button
     justify-content: space-evenly;
     margin-top: auto;
     margin-bottom: 5px;
-    background-color:
 }
 
 .contact-button
@@ -224,14 +222,13 @@ button
 .name-editor input,
 .field-editor
 {
-    width: 25%;
+    width: 30%;
 }
 
 .field-editor
 {
     display: none;
 }
-
 
 #contacts a,
 #contacts a:visited,
