@@ -11,7 +11,7 @@ function openContact(contactId)
     document.getElementById("current-eye-color").textContent = contacts[contactId].eyeColor;
     document.getElementById("current-height").textContent = contacts[contactId].height;
     document.getElementById("current-location").textContent = contacts[contactId].location;
-    document.getElementById("current-hair-color").textContent = contacts[contactId].haircolor;
+    document.getElementById("current-hair-color").textContent = contacts[contactId].hairColor;
 }
 
 function loadContacts(data)
@@ -184,7 +184,7 @@ function saveEdits()
         phone: document.getElementById("phone-editor").value,
         email: document.getElementById("email-editor").value,
         location: document.getElementById("location-editor").value,
-        haircolor: document.getElementById("hair-editor").value,
+        hairColor: document.getElementById("hair-editor").value,
         eyeColor: document.getElementById("eye-editor").value,
         height: document.getElementById("height-editor").value
     }
@@ -226,7 +226,7 @@ function saveEdits()
     contacts[currentContact].phone = fields.phone;
     contacts[currentContact].email = fields.email;
     contacts[currentContact].location = fields.location;
-    contacts[currentContact].haircolor = fields.haircolor;
+    contacts[currentContact].hairColor = fields.hairColor;
     contacts[currentContact].eyeColor = fields.eyeColor;
     contacts[currentContact].height = fields.height;
     resetFields();
@@ -272,7 +272,7 @@ function createContact()
         phone: document.getElementById("phone-editor").value,
         email: document.getElementById("email-editor").value,
         location: document.getElementById("location-editor").value,
-        haircolor: document.getElementById("hair-editor").value,
+        hairColor: document.getElementById("hair-editor").value,
         eyeColor: document.getElementById("eye-editor").value,
         height: document.getElementById("height-editor").value
     }
@@ -298,8 +298,8 @@ function createContact()
                 phone: fields.phone,
                 email: fields.email,
                 location: fields.location,
-                haircolor: fields.haircolor,
-                eyeColor: fields.eyeColors,
+                hairColor: fields.hairColor,
+                eyeColor: fields.eyeColor,
                 height: fields.height,
                 id: data.contactId
             };
