@@ -72,7 +72,6 @@ function loadContacts(data)
     pages = data.results;
     for (var i = 0; i < Math.min(maxNumContacts, numContacts); i++)
     {
-	//console.log(data.results[i].contactId);
         html += "<tr id=\"" + data.results[i].contactId + "\"><td><a href=\"#\" onclick=openContact(" + data.results[i].contactId + ")>" + data.results[i].firstName + " " +  data.results[i].lastName + "</a></td></tr>";
     }
     for (var i = 0; i < data.results.length; i++)

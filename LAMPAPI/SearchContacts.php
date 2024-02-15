@@ -42,7 +42,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '{"firstName":"' . $row["FirstName"] . '", "lastName":"' . $row["LastName"] . '", "phone":"' . $row["Phone"] . '","email":"' . $row["Email"] . '","location":"' . $row["Location"] . '","haircolor":"' . $row["HairColor"] . '","eyeColor":"' . $row["EyeColor"] . '","height":"' . $row["HeightCM"] .'","contactId":"' . $row["ID"] . '" }';
+			$searchResults .= '{"firstName":"' . $row["FirstName"] . '", "lastName":"' . $row["LastName"] . '", "phone":"' . $row["Phone"] . '","email":"' . $row["Email"] . '","location":"' . $row["Location"] . '","hairColor":"' . $row["HairColor"] . '","eyeColor":"' . $row["EyeColor"] . '","height":"' . $row["HeightCM"] .'","contactId":"' . $row["ID"] . '" }';
 		}
 		$searchResults = rtrim($searchResults, ',');
 		
