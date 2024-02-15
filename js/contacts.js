@@ -57,6 +57,7 @@ function editContact()
     document.getElementById("contact-delete-button").style.display = "none";
     document.getElementById("cancel-button").style.display = "inline-block";
     document.getElementById("contact-save-button").style.display = "inline-block";
+    document.getElementById("add-contact").style.display = "none";
 
     // update name labels
     document.getElementById("current-name").style.display = "none";
@@ -72,10 +73,19 @@ function editContact()
     document.getElementById("phone-editor").style.display = "inline-block";
     document.getElementById("current-email").style.display = "none";
     document.getElementById("email-editor").style.display = "inline-block";
+    document.getElementById("current-eye-color").style.display = "none";
+    document.getElementById("eye-editor").style.display = "inline-block";
+    document.getElementById("current-height").style.display = "none";
+    document.getElementById("height-editor").style.display = "inline-block";
+    document.getElementById("current-location").style.display = "none";
+    document.getElementById("location-editor").style.display = "inline-block";
 
     // update placeholders for contact fields
     document.getElementById("phone-editor").value = document.getElementById("current-phone").textContent;
     document.getElementById("email-editor").value = document.getElementById("current-email").textContent;
+    document.getElementById("eye-editor").value = document.getElementById("current-eye-color").textContent;
+    document.getElementById("height-editor").value = document.getElementById("current-height").textContent;
+    document.getElementById("location-editor").value = document.getElementById("current-location").textContent;
 }
 
 function resetFields()
@@ -88,7 +98,11 @@ function resetFields()
     document.getElementById("phone-editor").style.display = "none";
     document.getElementById("current-email").style.display = "inline-block";
     document.getElementById("email-editor").style.display = "none";
+    document.getElementById("eye-editor").style.display = "none";
+    document.getElementById("height-editor").style.display = "none";
+    document.getElementById("location-editor").style.display = "none";
     
+    document.getElementById("add-contact").style.display = "inline-block";
     document.getElementById("cancel-button").style.display = "none";
     document.getElementById("new-contact-save").style.display = "none";
     document.getElementById("contact-edit-button").style.display = "inline-block";
@@ -115,9 +129,9 @@ function saveEdits()
     document.getElementById("cancel-button").style.display = "none";
     document.getElementById("new-contact-save").style.display = "none";
     document.getElementById("contact-delete-button").style.display = "inline-block";
-
     document.getElementById("contact-save-button").style.display = "none";
     document.getElementById("contact-edit-button").style.display = "inline-block";
+    document.getElementById("add-contact").style.display = "inline-block";
     
     // update name labels
     document.getElementById("fname-editor-data").style.display = "none";
@@ -177,6 +191,7 @@ function newContact()
     document.getElementById("cancel-button").style.display = "inline-block";
     document.getElementById("new-contact-save").style.display = "inline-block";
     document.getElementById("contact-save-button").style.display = "none";
+    document.getElementById("add-contact").style.display = "none";
 
     // update name labels
     document.getElementById("current-name").style.display = "none";
@@ -188,6 +203,12 @@ function newContact()
     document.getElementById("phone-editor").style.display = "inline-block";
     document.getElementById("current-email").style.display = "none";
     document.getElementById("email-editor").style.display = "inline-block";
+    document.getElementById("current-eye-color").style.display = "none";
+    document.getElementById("eye-editor").style.display = "inline-block";
+    document.getElementById("current-height").style.display = "none";
+    document.getElementById("height-editor").style.display = "inline-block";
+    document.getElementById("current-location").style.display = "none";
+    document.getElementById("location-editor").style.display = "inline-block";
 }
 
 function createContact()
