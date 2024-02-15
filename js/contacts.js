@@ -8,6 +8,10 @@ function openContact(contactId)
     document.getElementById("current-lname").textContent = contacts[contactId].lastName;
     document.getElementById("current-phone").textContent = contacts[contactId].phone;
     document.getElementById("current-email").textContent = contacts[contactId].email;
+    document.getElementById("current-eye-color").textContent = contacts[contactId].eyeColor;
+    document.getElementById("current-height").textContent = contacts[contactId].height;
+    document.getElementById("current-location").textContent = contacts[contactId].location;
+    document.getElementById("current-hair-color").textContent = contacts[contactId].hairColor;
 }
 
 function loadContacts(data)
@@ -79,6 +83,8 @@ function editContact()
     document.getElementById("height-editor").style.display = "inline-block";
     document.getElementById("current-location").style.display = "none";
     document.getElementById("location-editor").style.display = "inline-block";
+    document.getElementById("current-hair-color").style.display = "none";
+    document.getElementById("hair-editor").style.display = "inline-block";
 
     // update placeholders for contact fields
     document.getElementById("phone-editor").value = document.getElementById("current-phone").textContent;
@@ -94,13 +100,24 @@ function resetFields()
     document.getElementById("current-name").style.display = "flex";
     document.getElementById("fname-editor-data").style.display = "none";
     document.getElementById("lname-editor-data").style.display = "none";
+
     document.getElementById("current-phone").style.display = "inline-block";
     document.getElementById("phone-editor").style.display = "none";
+
     document.getElementById("current-email").style.display = "inline-block";
     document.getElementById("email-editor").style.display = "none";
+
+    document.getElementById("current-eye-color").style.display = "inline-block";
     document.getElementById("eye-editor").style.display = "none";
+
+    document.getElementById("current-height").style.display = "inline-block";
     document.getElementById("height-editor").style.display = "none";
+    
+    document.getElementById("current-location").style.display = "inline-block";
     document.getElementById("location-editor").style.display = "none";
+
+    document.getElementById("current-hair-color").style.display = "inline-block";
+    document.getElementById("hair-editor").style.display = "none";
     
     document.getElementById("add-contact").style.display = "inline-block";
     document.getElementById("cancel-button").style.display = "none";
@@ -143,6 +160,14 @@ function saveEdits()
     document.getElementById("current-phone").style.display = "inline-block";
     document.getElementById("email-editor").style.display = "none";
     document.getElementById("current-email").style.display = "inline-block";
+    document.getElementById("current-eye-color").style.display = "inline-block";
+    document.getElementById("eye-editor").style.display = "none";
+    document.getElementById("current-height").style.display = "inline-block";
+    document.getElementById("height-editor").style.display = "none";
+    document.getElementById("current-location").style.display = "inline-block";
+    document.getElementById("location-editor").style.display = "none";
+    document.getElementById("current-hair-color").style.display = "inline-block";
+    document.getElementById("hair-editor").style.display = "none";
     
     // update contact in database
     fields = 
@@ -153,10 +178,10 @@ function saveEdits()
         lastName: document.getElementById("lname-editor").value,
         phone: document.getElementById("phone-editor").value,
         email: document.getElementById("email-editor").value,
-        location: "",
-        hairColor: "",
-        eyeColor: "",
-        height: 0
+        location: document.getElementById("location-editor").value,
+        hairColor: document.getElementById("hair-editor").value,
+        eyeColor: document.getElementById("eye-editor").value,
+        height: document.getElementById("height-editor").value
     }
 
     let payload = JSON.stringify(fields);
@@ -173,6 +198,10 @@ function saveEdits()
             // save contact fields
             contacts[currentContact].phone = fields.phone;
             contacts[currentContact].email = fields.email;
+            contacts[currentContact].location = fields.location;
+            contacts[currentContact].hairColor = fields.hairColor;
+            contacts[currentContact].eyeColor = fields.eyeColor;
+            contacts[currentContact].height = fields.height;
             resetFields();
         });
     }
@@ -209,6 +238,8 @@ function newContact()
     document.getElementById("height-editor").style.display = "inline-block";
     document.getElementById("current-location").style.display = "none";
     document.getElementById("location-editor").style.display = "inline-block";
+    document.getElementById("current-hair-color").style.display = "none";
+    document.getElementById("hair-editor").style.display = "inline-block";
 }
 
 function createContact()
@@ -219,7 +250,11 @@ function createContact()
         firstName: document.getElementById("fname-editor").value,
         lastName: document.getElementById("lname-editor").value,
         phone: document.getElementById("phone-editor").value,
-        email: document.getElementById("email-editor").value
+        email: document.getElementById("email-editor").value,
+        location: document.getElementById("location-editor").value,
+        hairColor: document.getElementById("hair-editor").value,
+        eyeColor: document.getElementById("eye-editor").value,
+        height: document.getElementById("height-editor").value
     }
 
     if (fields.firstName == "")
@@ -227,6 +262,7 @@ function createContact()
         resetFields();
         return false;
     }
+    if (fields.height == "") fields.height = 0;
 
     let payload = JSON.stringify(fields);
     let url = apiURL + '/AddContact' + apiExtension;
@@ -241,6 +277,10 @@ function createContact()
                 lastName: fields.lastName,
                 phone: fields.phone,
                 email: fields.email,
+                location: fields.location,
+                hairColor: fields.hairColor,
+                eyeColor: fields.eyeColors,
+                height: fields.height,
                 id: data.contactId
             };
             resetFields();
