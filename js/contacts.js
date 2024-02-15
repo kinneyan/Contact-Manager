@@ -1,6 +1,12 @@
 let contacts = {};
 let currentContact = -1;
 
+let numPages = 1;
+let pages = {};
+let numContacts = 0;
+let currentPage = 1;
+const maxNumContacts = 17;
+
 function openContact(contactId)
 {
     currentContact = contactId;
@@ -11,24 +17,74 @@ function openContact(contactId)
     document.getElementById("current-eye-color").textContent = contacts[contactId].eyeColor;
     document.getElementById("current-height").textContent = contacts[contactId].height;
     document.getElementById("current-location").textContent = contacts[contactId].location;
-    document.getElementById("current-hair-color").textContent = contacts[contactId].haircolor;
+    document.getElementById("current-hair-color").textContent = contacts[contactId].hairColor;
+}
+
+function nextPage()
+{
+    if ((currentPage+1) > numPages)
+    {
+        return;
+    }
+    else
+    {
+        currentPage++;
+        loadPage();
+    }
+}
+
+function previousPage()
+{
+    if ((currentPage-1) < 1)
+    {
+        return;
+    }
+    else
+    {
+        currentPage--;
+        loadPage();
+    }
+}
+
+function loadPage()
+{
+    var html = "";
+    if(currentPage == 1)
+    {
+        for(var i = 0; i < Math.min(maxNumContacts, pages.length); i++)
+            html += "<tr id=\"" + pages[i].contactId + "\"><td><a href=\"#\" onclick=openContact(" + pages[i].contactId + ")>" + pages[i].firstName + " " +  pages[i].lastName + "</a></td></tr>";
+    }
+    else
+    {
+        var i = maxNumContacts
+        for(i; i < Math.min((maxNumContacts*currentPage), pages.length); i++)
+            html += "<tr id=\"" + pages[i].contactId + "\"><td><a href=\"#\" onclick=openContact(" + pages[i].contactId + ")>" + pages[i].firstName + " " +  pages[i].lastName + "</a></td></tr>";
+    }
+    document.getElementById("contact-table-data").innerHTML = html;
+    document.getElementById("page-count").innerHTML = "Page " + currentPage + " (" + currentPage + " - " + numPages + ") ";
 }
 
 function loadContacts(data)
 {
     var html = "";
-    
+    numContacts = data.results.length;
+    numPages = Math.ceil(numContacts/maxNumContacts);
+    pages = data.results;
+    for (var i = 0; i < Math.min(maxNumContacts, numContacts); i++)
+    {
+	//console.log(data.results[i].contactId);
+        html += "<tr id=\"" + data.results[i].contactId + "\"><td><a href=\"#\" onclick=openContact(" + data.results[i].contactId + ")>" + data.results[i].firstName + " " +  data.results[i].lastName + "</a></td></tr>";
+    }
     for (var i = 0; i < data.results.length; i++)
     {
         // add contact to local contact list
         contacts[data.results[i].contactId] = data.results[i];
-        
+        // contacts = data.results;
         // generate html
-        html += "<tr id=\"" + data.results[i].contactId + "\"><td><a href=\"#\" onclick=openContact(" + data.results[i].contactId + ")>" + data.results[i].firstName + " " +  data.results[i].lastName + "</a></td></tr>";
     }
-    
     // inject html
     document.getElementById("contact-table-data").innerHTML = html;
+    document.getElementById("page-count").innerHTML = "Page " + currentPage + " (" + currentPage + " - " + numPages + ") ";
 }
 
 function searchContacts()
@@ -184,7 +240,7 @@ function saveEdits()
         phone: document.getElementById("phone-editor").value,
         email: document.getElementById("email-editor").value,
         location: document.getElementById("location-editor").value,
-        haircolor: document.getElementById("hair-editor").value,
+        hairColor: document.getElementById("hair-editor").value,
         eyeColor: document.getElementById("eye-editor").value,
         height: document.getElementById("height-editor").value
     }
@@ -226,7 +282,7 @@ function saveEdits()
     contacts[currentContact].phone = fields.phone;
     contacts[currentContact].email = fields.email;
     contacts[currentContact].location = fields.location;
-    contacts[currentContact].haircolor = fields.haircolor;
+    contacts[currentContact].hairColor = fields.hairColor;
     contacts[currentContact].eyeColor = fields.eyeColor;
     contacts[currentContact].height = fields.height;
     resetFields();
@@ -272,7 +328,7 @@ function createContact()
         phone: document.getElementById("phone-editor").value,
         email: document.getElementById("email-editor").value,
         location: document.getElementById("location-editor").value,
-        haircolor: document.getElementById("hair-editor").value,
+        hairColor: document.getElementById("hair-editor").value,
         eyeColor: document.getElementById("eye-editor").value,
         height: document.getElementById("height-editor").value
     }
@@ -298,8 +354,8 @@ function createContact()
                 phone: fields.phone,
                 email: fields.email,
                 location: fields.location,
-                haircolor: fields.haircolor,
-                eyeColor: fields.eyeColors,
+                hairColor: fields.hairColor,
+                eyeColor: fields.eyeColor,
                 height: fields.height,
                 id: data.contactId
             };
