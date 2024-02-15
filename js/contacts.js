@@ -5,7 +5,7 @@ let numPages = 1;
 let pages = {};
 let numContacts = 0;
 let currentPage = 1;
-const maxNumContacts = 17;
+const maxNumContacts = 16;
 
 function openContact(contactId)
 {
@@ -52,13 +52,22 @@ function loadPage()
     if(currentPage == 1)
     {
         for(var i = 0; i < Math.min(maxNumContacts, pages.length); i++)
+        {
+            //console.log(pages[i].contactId);
             html += "<tr id=\"" + pages[i].contactId + "\"><td><a href=\"#\" onclick=openContact(" + pages[i].contactId + ")>" + pages[i].firstName + " " +  pages[i].lastName + "</a></td></tr>";
+        }
+        
     }
     else
     {
+        
         var i = maxNumContacts
         for(i; i < Math.min((maxNumContacts*currentPage), pages.length); i++)
+        {
+            //console.log(pages[i].contactId);
             html += "<tr id=\"" + pages[i].contactId + "\"><td><a href=\"#\" onclick=openContact(" + pages[i].contactId + ")>" + pages[i].firstName + " " +  pages[i].lastName + "</a></td></tr>";
+        }
+            
     }
     document.getElementById("contact-table-data").innerHTML = html;
     document.getElementById("page-count").innerHTML = "Page " + currentPage + " (" + currentPage + " - " + numPages + ") ";
@@ -67,11 +76,13 @@ function loadPage()
 function loadContacts(data)
 {
     var html = "";
+    currentPage = 1;
     numContacts = data.results.length;
     numPages = Math.ceil(numContacts/maxNumContacts);
     pages = data.results;
     for (var i = 0; i < Math.min(maxNumContacts, numContacts); i++)
     {
+	//console.log(data.results[i].contactId);
         html += "<tr id=\"" + data.results[i].contactId + "\"><td><a href=\"#\" onclick=openContact(" + data.results[i].contactId + ")>" + data.results[i].firstName + " " +  data.results[i].lastName + "</a></td></tr>";
     }
     for (var i = 0; i < data.results.length; i++)
@@ -187,6 +198,10 @@ function resetFields()
     document.getElementById("current-lname").textContent = "";
     document.getElementById("current-phone").textContent = "";
     document.getElementById("current-email").textContent = "";
+    document.getElementById("current-hair-color").textContent = "";
+    document.getElementById("current-eye-color").textContent = "";
+    document.getElementById("current-height").textContent = "";
+    document.getElementById("current-location").textContent = "";
     document.getElementById("fname-editor").value = "";
     document.getElementById("lname-editor").value = "";
     document.getElementById("phone-editor").value = "";
@@ -260,7 +275,8 @@ function saveEdits()
     {
         $.post(url, payload, function (data, status)
         {
-            if (error != "")
+            //console.log(data.results);
+            if (data.error != "")
             {
                 contacts[currentContact] = beforeContact;
                 resetFields();
@@ -272,7 +288,7 @@ function saveEdits()
         console.log(err.message);
         return false;
     }
-
+    
     // save name
     contacts[currentContact].firstName = fields.firstName;
     contacts[currentContact].lastName = fields.lastName;
@@ -284,7 +300,13 @@ function saveEdits()
     contacts[currentContact].hairColor = fields.hairColor;
     contacts[currentContact].eyeColor = fields.eyeColor;
     contacts[currentContact].height = fields.height;
+    for (var i = 0; i < pages.length; i++)
+    {
+        if(pages[i].contactId == currentContact)
+            pages[i] = contacts[currentContact]; 
+    }
     resetFields();
+    loadPage();
 }
 
 function newContact()
@@ -356,10 +378,25 @@ function createContact()
                 hairColor: fields.hairColor,
                 eyeColor: fields.eyeColor,
                 height: fields.height,
-                id: data.contactId
+                contactId: data.contactId
             };
+            pages[pages.length] = 
+            {
+                firstName: fields.firstName,
+                lastName: fields.lastName,
+                phone: fields.phone,
+                email: fields.email,
+                location: fields.location,
+                hairColor: fields.hairColor,
+                eyeColor: fields.eyeColor,
+                height: fields.height,
+                contactId: data.contactId
+            };
+            numContacts++;
+            numPages = Math.ceil(numContacts/maxNumContacts);
             resetFields();
             openContact(data.contactId);
+            loadPage();
         });
     }
     catch(err)
@@ -385,6 +422,7 @@ function deleteContact()
     {
         $.post(url, payload, function(data, status)
         {
+		delete contacts[currentContact];
             currentContact = -1;
             // reset current view fields
             resetFields();
