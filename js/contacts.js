@@ -1,75 +1,29 @@
 let contacts = {};
 let currentContact = -1;
 
-function addContact() {
-
-    let firstName = document.getElementById("contactsFirstName").value;
-    let lastName = document.getElementById("contactsLastName").value;
-    let phone = document.getElementById("contactsPhoneNumber").value;
-    let email = document.getElementById("contactsEmail").value;
-
-    let contactInfo = {
-        firstName: firstName,
-        lastName: lastName,
-        phone: phone,
-        email: email,
-        userId: userId
-    };
-
-
-    let payload = JSON.stringify(contactInfo);
-    let url = apiURL + '/AddContact' + apiExtension;
-
-    try {
-        $.post(url, payload, function(data, status)
-        {
-            console.log("Contact has been added");
-        });
-    } catch (err) {
-        console.log(err.message);
-    }
-}
-
 function openContact(contactId)
 {
     currentContact = contactId;
     document.getElementById("current-fname").textContent = contacts[contactId].firstName;
     document.getElementById("current-lname").textContent = contacts[contactId].lastName;
-    document.getElementById("current-phone").textContent = contacts[contactId].phoneNumber;
+    document.getElementById("current-phone").textContent = contacts[contactId].phone;
     document.getElementById("current-email").textContent = contacts[contactId].email;
 }
 
 function loadContacts(data)
 {
     var html = "";
-    results = data.results;
-    for (var i = 0; i < results.length; i++)
+    
+    for (var i = 0; i < data.results.length; i++)
     {
-        var contact = results[i].split(" ");
-        var id = i;
-        var firstName = contact[0];
-        var lastName = contact[1];
-        var phone = contact[2];
-        var email = contact[3];
-
-        // skip contact if corrupt
-        if (firstName == "" || lastName == "" || phone == "" || email == "") break;
+        // add contact to local contact list
+        contacts[data.results[i].contactId] = data.results[i];
         
-        // add to contacts list
-        contacts[i] =
-        {
-            firstName: firstName,
-            lastName: lastName,
-            phoneNumber: phone,
-            email: email,
-            id: id
-        };
-
-        // generate html tags
-        html += "<tr><td><a href=\"#\" onclick=openContact(" + id + ")>" + firstName + " " +  lastName + "</a></td></tr>";
+        // generate html
+        html += "<tr id=\"" + data.results[i].contactId + "\"><td><a href=\"#\" onclick=openContact(" + data.results[i].contactId + ")>" + data.results[i].firstName + " " +  data.results[i].lastName + "</a></td></tr>";
     }
-
-    // inject html text
+    
+    // inject html
     document.getElementById("contact-table-data").innerHTML = html;
 }
 
@@ -77,7 +31,7 @@ function searchContacts()
 {
     let searchData = document.getElementById("search-bar").value;
     let searchInfo = {
-        firstName: searchData,
+        searchParam: searchData,
         userId: userId
     }
     let payload = JSON.stringify(searchInfo);
@@ -146,6 +100,10 @@ function resetFields()
     document.getElementById("current-lname").textContent = "";
     document.getElementById("current-phone").textContent = "";
     document.getElementById("current-email").textContent = "";
+    document.getElementById("fname-editor").value = "";
+    document.getElementById("lname-editor").value = "";
+    document.getElementById("phone-editor").value = "";
+    document.getElementById("email-editor").value = "";
 
     if (currentContact > 0) openContact(currentContact);
     else currentContact = -1;
@@ -171,19 +129,44 @@ function saveEdits()
     document.getElementById("current-phone").style.display = "inline-block";
     document.getElementById("email-editor").style.display = "none";
     document.getElementById("current-email").style.display = "inline-block";
-
-    // save name
-    contacts[currentContact].firstName = document.getElementById("fname-editor").value;
-    contacts[currentContact].lastName = document.getElementById("lname-editor").value;
-
-    // save contact fields
-    contacts[currentContact].phoneNumber = document.getElementById("phone-editor").value;
-    contacts[currentContact].email = document.getElementById("email-editor").value;
-
-    openContact(currentContact);
-
+    
     // update contact in database
-    // DO ONCE UPDATE API ENDPOINT IS CREATED
+    fields = 
+    {
+        userId: userId,
+        contactId: contacts[currentContact].contactId,
+        firstName: document.getElementById("fname-editor").value,
+        lastName: document.getElementById("lname-editor").value,
+        phone: document.getElementById("phone-editor").value,
+        email: document.getElementById("email-editor").value,
+        location: "",
+        hairColor: "",
+        eyeColor: "",
+        height: 0
+    }
+
+    let payload = JSON.stringify(fields);
+    let url = apiURL + '/UpdateContact' + apiExtension;
+
+    try
+    {
+        $.post(url, payload, function (data, status)
+        {
+            // save name
+            contacts[currentContact].firstName = fields.firstName;
+            contacts[currentContact].lastName = fields.lastName;
+        
+            // save contact fields
+            contacts[currentContact].phone = fields.phone;
+            contacts[currentContact].email = fields.email;
+            resetFields();
+        });
+    }
+    catch (err)
+    {
+        console.log(err.message);
+        return false;
+    }
 }
 
 function newContact()
@@ -218,6 +201,12 @@ function createContact()
         email: document.getElementById("email-editor").value
     }
 
+    if (fields.firstName == "")
+    {
+        resetFields();
+        return false;
+    }
+
     let payload = JSON.stringify(fields);
     let url = apiURL + '/AddContact' + apiExtension;
 
@@ -225,17 +214,47 @@ function createContact()
     {
         $.post(url, payload, function(data, status)
         {
-            newId = contacts.length + 1;
-            contacts[newId] =
+            contacts[data.contactId] =
             {
                 firstName: fields.firstName,
                 lastName: fields.lastName,
-                phoneNumber: fields.phone,
+                phone: fields.phone,
                 email: fields.email,
-                id: newId
+                id: data.contactId
             };
             resetFields();
-            openContact(newId);
+            openContact(data.contactId);
+        });
+    }
+    catch(err)
+    {
+        console.log(err.message);
+    }
+}
+
+function deleteContact()
+{
+    if (currentContact < 0) return false;
+
+    fields = 
+    {
+        contactId: currentContact,
+        userId: userId
+    }
+
+    let payload = JSON.stringify(fields);
+    let url = apiURL + '/DeleteContact' + apiExtension;
+
+    try
+    {
+        $.post(url, payload, function(data, status)
+        {
+            // reset current view fields
+            resetFields();
+
+            // update contact list
+            let row = document.getElementById(fields.contactId);
+            row.parentNode.removeChild(row);
         });
     }
     catch(err)
