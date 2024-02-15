@@ -73,6 +73,7 @@ function logout()
     firstName = "";
     lastName = "";
     window.location.href = "index.html";
+    document.cookie = "";
 }
 
 function register()
@@ -152,7 +153,7 @@ function register()
     {
         $.post(url, payload, function(data, status)
         {
-            userId = data.id;
+            userId = data.userId;
             if (userId < 1)
             {
                 document.getElementById("login-response").innerHTML = "Error while creating account";

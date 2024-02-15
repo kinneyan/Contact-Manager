@@ -9,10 +9,20 @@
         <script type="text/javascript" src="js/cookie.js"></script>
         <script type="text/javascript" src="js/user.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<style>
+		body
+		{
+			background-image: url("/images/backup.jpg");
+			background-position: 50% 0px;
+			background-repeat: auto;
+			background-size: cover;
+			background-attachment: fixed;
+			background-color: #261E0B;
+		}
+	</style>
     </head>
     <body>
         <div class="banner">
-            <h1>Joe's Contact Manager</h1>
             <div class="banner-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
@@ -20,9 +30,9 @@
                 <a href="signup.html">Sign up</a>
             </div>
         </div>
-        <div class="flex-container">
+        <div class="flex-container" style="height: 500px; position: absolute; top: 10%; left: 38%;">
             <span id="login-response"></span>
-            <form class="form-container">
+            <form class="form-container" style="height = 500px">
                 <div class="form-element">
                     <label for="firstName">First name</label>
                     <input type="text" id="firstName" name="firstName">

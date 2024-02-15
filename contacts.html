@@ -12,7 +12,7 @@
         <script type="text/javascript" src="js/cookie.js"></script>
         <script type="text/javascript">
             document.addEventListener('DOMContentLoaded', function(){
-                //getCookie();
+                getCookie();
             }, {once: true});
         </script>
     </head>
@@ -114,7 +114,7 @@
                         </tbody>
                     </table>
                     <div id="contact-footer">
-                        <button class="contact-button" id="contact-delete-button">Delete</button>
+                        <button class="contact-button" id="contact-delete-button" onclick="deleteContact();">Delete</button>
                     </div>
                 </div>
             </div>
